@@ -1,0 +1,83 @@
+{
+	"home": {
+		"dropzone": {
+			"message": "<span class='font-semibold'>点击上传</span>",
+			"types": "支持图片格式： BMP, PNG, JPG, JPEG, TIFF, WebP or GIF",
+			"files_selected": "选择了 {count} 个文件"
+		},
+		"options": {
+			"choose": "请选择",
+			"keep": "保留原有格式",
+			"format": "格式",
+			"filter": "过滤器",
+			"width": {
+				"title": "宽度",
+				"helper1": "只能是数字",
+				"helper2": "非数字或0将会被忽略"
+			},
+			"height": {
+				"title": "高度",
+				"helper1": "只能是数字",
+				"helper2": "非数字或0将会被忽略"
+			}
+		},
+		"buttons": {
+			"doing": "正在转换",
+			"cancel": "取消",
+			"start": "开始",
+			"clear": "清理"
+		}
+	},
+	"settings": {
+		"language": {
+			"title": "语言选项"
+		},
+		"cpu": {
+			"title": "CPU及内存使用",
+			"medium": "中",
+			"high": "高",
+			"most": "最高",
+			"medium_desc": "中等 CPU 和内存消耗，默认处理速度。",
+			"high_desc": "高 CPU 和内存消耗，高处理速度。",
+			"most_desc": "最高 CPU 和内存消耗，更快的处理速度。"
+		},
+		"path": {
+			"title": "文件输出路径",
+			"ask_me_desc": "输出路径默认将与原始文件保持一致。",
+			"ask_me": "处理之前询问"
+		},
+		"image": {
+			"title": "图片设定",
+			"jpg_title": "JPEG Quality",
+			"jpg_desc": "JPG、JPEG 图像的编码参数。质量范围为 1 到 100（包括 1 和 100），数值越高，质量越好。",
+			"jpg_cur_value": "当前值：",
+			"gif_title": "GIF NumColors",
+			"gif_desc": "GIF 编码图像中使用的最大颜色数量。NumColors 的范围为 1 到 256（包括 1 和 256），数值越高，颜色越丰富。",
+			"gif_cur_value": "当前值：",
+			"png_title": "PNG Compression",
+			"png_desc": "Default Compression, No Compression, Best Speed, Best Compression",
+			"tiff_title": "TIFF Compression",
+			"tiff_desc": "Uncompressed, Deflate, LZW, CCITTGroup3, CCITTGroup4",
+			"exit_auto_orientation": "Auto Orientation",
+			"exif_orientation_title": "EXIF Orientation",
+			"exif_orientation_desc": "如果启用了自动方向功能，图像将在解码后根据 EXIF 方向标签（如果存在）进行调整。"
+		}
+	},
+	"about": {
+		"title": "Resizem",
+		"content": [
+			"<strong>免责声明</strong>",
+			"<p>本软件是在“按现状”和“按可用性”基础上提供的。对于软件的使用或性能，<strong>Resizem</strong> 不作任何明示或暗示的保证。用户对使用该软件承担全部责任和风险。<strong>Resizem</strong> 不保证软件能够满足您的要求，且不保证其无错误或不中断运行。</p>",
+			"<p><strong>责任限制</strong></p>",
+			"<p>在任何情况下，<strong>Resizem</strong> 均不对因使用或无法使用该软件而产生的任何直接、间接、偶然、特殊或后果性损害承担责任，包括但不限于利润损失、业务中断或信息丢失，即使 <strong>Resizem</strong> 已被告知可能发生此类损害。</p>",
+			"<p><strong>用户责任</strong></p>",
+			"<p>用户有责任确保该软件与其系统兼容并符合其需求。<strong>Resizem</strong> 对因使用该软件而导致的任何损害或数据丢失不承担责任。</p>",
+			"<p><strong>更新及修改</strong></p>",
+			"<p><strong>Resizem</strong> 保留随时修改、更新或终止该软件的权力，且无需事先通知。若在任何更新或修改后继续使用该软件，则视为您接受此类更改。</p>",
+			"<p><strong>第三方软件或依赖库</strong></p>",
+			"<p>本软件可能包含指向第三方软件或服务的链接或集成。<strong>Resizem</strong> 不对任何第三方产品或服务的性能、隐私或安全性负责。</p>",
+			"<p>使用该软件即表示您确认已阅读并理解本免责声明，并同意其条款。</p>"
+		],
+		"okay_btn": "Okay"
+	}
+}

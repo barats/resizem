@@ -1,0 +1,83 @@
+{
+	"home": {
+		"dropzone": {
+			"message": "<span class='font-semibold'>Click to Upload</span>",
+			"types": "BMP, PNG, JPG, JPEG, TIF, TIFF, WebP or GIF",
+			"files_selected": "{count} file(s) selected"
+		},
+		"options": {
+			"choose": "Choose options",
+			"keep": "Keep Original Format",
+			"format": "Format",
+			"filter": "Filter",
+			"width": {
+				"title": "Width",
+				"helper1": "Numbers only.",
+				"helper2": "Non-digits and 0 will be ignored."
+			},
+			"height": {
+				"title": "Height",
+				"helper1": "Numbers only.",
+				"helper2": "Non-digits and 0 will be ignored."
+			}
+		},
+		"buttons": {
+			"doing": "Converting",
+			"cancel": "Cancel",
+			"start": "Start",
+			"clear": "Clear"
+		}
+	},
+	"settings": {
+		"language": {
+			"title": "Language Options"
+		},
+		"cpu": {
+			"title": "CPU & Memory Usage",
+			"medium": "Medium",
+			"high": "High",
+			"most": "Most",
+			"medium_desc": "Medium CPU & Memory cost, default process speed.",
+			"high_desc": "High CPU & Memory cost, high process speed.",
+			"most_desc": "Most CPU & Memory cost, faster process speed."
+		},
+		"path": {
+			"title": "File Output Path",
+			"ask_me_desc": "Output path will remain the same as the original file by default.",
+			"ask_me": "Ask Before Process"
+		},
+		"image": {
+			"title": "Image Settings",
+			"jpg_title": "JPEG Quality",
+			"jpg_desc": "Encoding parameter for JPG, JPEG images. Quality ranges from 1 to 100 inclusive, higher is better.",
+			"jpg_cur_value": "Current Value: ",
+			"gif_title": "GIF NumColors",
+			"gif_desc": "Maximum number of colors used in the GIF encoded image. NumColors ranges from 1 to 256 inclusive, higher is better.",
+			"gif_cur_value": "Current Value: ",
+			"png_title": "PNG Compression",
+			"png_desc": "Default Compression, No Compression, Best Speed, Best Compression",
+			"tiff_title": "TIFF Compression",
+			"tiff_desc": "Uncompressed, Deflate, LZW, CCITTGroup3, CCITTGroup4",
+			"exit_auto_orientation": "Auto Orientation",
+			"exif_orientation_title": "EXIF Orientation",
+			"exif_orientation_desc": "If auto orientation is enabled, the image will be transformed after decoding according to the EXIF orientation tag (if present)."
+		}
+	},
+	"about": {
+		"title": "Resizem",
+		"content": [
+			"<strong>Disclaimer of Warranties</strong>",
+			"<p>The software provided is on an \"as-is\" and \"as available\" basis. No warranties, express or implied, are made regarding the use or performance of the software. The user assumes all responsibility and risk for the use of the software. <strong>Resizem</strong> do not guarantee that the software will meet your requirements, be free from errors, or operate uninterrupted.</p>",
+			"<p><strong>Limitation of Liability</strong></p>",
+			"<p>In no event shall <strong>Resizem</strong> be liable for any direct, indirect, incidental, special, or consequential damages arising out of or related to the use or inability to use the software, including but not limited to, damages for loss of profits, business interruption, or loss of information, even if <strong>Resizem</strong> have been advised of the possibility of such damages.</p>",
+			"<p><strong>User Responsibility</strong></p>",
+			"<p>It is the user's responsibility to ensure that the software is compatible with their systems and meets their needs. <strong>Resizem</strong> shall not be responsible for any damage or data loss resulting from the use of the software.</p>",
+			"<p><strong>Updates and Modifications</strong></p>",
+			"<p><strong>Resizem</strong> reserve the right to modify, update, or discontinue the software at any time without prior notice. Continued use of the software following any updates or modifications constitutes your acceptance of such changes.</p>",
+			"<p><strong>Third-Party Software</strong></p>",
+			"<p>This software may contain links or integrations to third-party software or services. <strong>Resizem</strong> are not responsible for the performance, privacy, or security of any third-party products or services.</p>",
+			"<p><strong>By using this software, you acknowledge that you have read and understood this disclaimer and agree to its terms.</strong></p>"
+		],
+		"okay_btn": "Okay"
+	}
+}

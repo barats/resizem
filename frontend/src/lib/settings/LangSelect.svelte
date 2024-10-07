@@ -1,0 +1,32 @@
+<!-- Copyright (c) 2024 Barat Semet (https://github.com/barats)
+Resizem is licensed under Mulan PSL v2.
+You can use this software according to the terms and conditions of the Mulan PSL v2.
+You may obtain a copy of Mulan PSL v2 at:
+         http://license.coscl.org.cn/MulanPSL2
+THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+See the Mulan PSL v2 for more details. -->
+
+<script>
+	import { Label, Select } from 'flowbite-svelte';
+	import { _ } from 'svelte-i18n';
+	import { appLocales, getAppLocale, setAppLocale } from '../i18n';
+
+	let selected = getAppLocale();
+
+	const handleSelect = () => {
+		setAppLocale(selected);
+	};
+</script>
+
+<Label defaultClass="text-lg font-medium" for="lang-select">{$_('settings.language.title')}</Label>
+<div class="pt-5">
+	<Select
+		id="lang-select"
+		placeholder={$_('home.options.choose')}
+		bind:value={selected}
+		items={appLocales}
+		on:change={handleSelect}
+	></Select>
+</div>

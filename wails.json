@@ -1,0 +1,18 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",  
+  "name": "Resizem",
+  "outputfilename": "Resizem",
+  "wailsjsdir": "./frontend/src/lib",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",  
+  "debounceMS": 500,
+  "info": {    
+    "productName": "Resizem",
+    "productVersion": "1.0.0",
+    "copyright": "Barat Semet",
+    "comments": "Resizem is an app designed for bulk image process,particularly useful for users who need to resize, convert, and manage large numbers of image files at once. Built using Wails (https://wails.io)."    
+  },
+  "nsisType": "single"
+}
