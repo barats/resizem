@@ -38,3 +38,8 @@ See the Mulan PSL v2 for more details.
 1. [Flowbite Svelte](https://flowbite-svelte.com)
 1. [TailwindCSS](https://tailwindcss.com)
 1. [disintegration/imaging](https://github.com/disintegration/imaging)
+
+## Release
+
+1. Github [https://github.com/barats/resizem](https://github.com/barats/resizem)
+1. Gitee [https://gitee.com/barat/resizem](https://gitee.com/barat/resizem)
