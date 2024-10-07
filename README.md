@@ -38,5 +38,3 @@ See the Mulan PSL v2 for more details.
 1. [Flowbite Svelte](https://flowbite-svelte.com)
 1. [TailwindCSS](https://tailwindcss.com)
 1. [disintegration/imaging](https://github.com/disintegration/imaging)
-1. [Golang](https://go.dev/)
-1. [Visual Studio Code](https://code.visualstudio.com/)
