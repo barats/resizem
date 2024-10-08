@@ -40,6 +40,14 @@ See the Mulan PSL v2 for more details.
 1. [TailwindCSS](https://tailwindcss.com)
 1. [disintegration/imaging](https://github.com/disintegration/imaging)
 
+## 开源协作
+
+如果您觉得此软件对您有用，或者对开源协作感兴趣，您可以尝试：
+
+1. 积极反馈使用过程中出现的问题
+1. 阅读源码并提出合适且必要的PR
+1. 将此应用翻译为其他语言（将翻译语言文件放置 `frontend/src/lib/i18n/locales/` 并提交PR）
+
 ## 发布渠道
 
 1. Github [https://github.com/barats/resizem](https://github.com/barats/resizem)
