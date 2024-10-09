@@ -58,3 +58,6 @@ See the Mulan PSL v2 for more details.
 
 1. Github [https://github.com/barats/resizem](https://github.com/barats/resizem)
 1. Gitee [https://gitee.com/barat/resizem](https://gitee.com/barat/resizem)
+
+## Github Stargazers
+[![Stargazers over time](https://starchart.cc/barats/resizem.svg?variant=adaptive)](https://starchart.cc/barats/resizem)
