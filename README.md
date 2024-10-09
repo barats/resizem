@@ -40,18 +40,18 @@ See the Mulan PSL v2 for more details.
 
 ## Give Thanks To 
 
-1. [Wails.io](https://wails.io) 
-1. [Flowbite Svelte](https://flowbite-svelte.com)
-1. [TailwindCSS](https://tailwindcss.com)
-1. [disintegration/imaging](https://github.com/disintegration/imaging)
+1. [Wails.io](https://wails.io) - Amazing project that could build cross-platform applications using Go
+1. [Flowbite Svelte](https://flowbite-svelte.com) - Official Flowbite component library for Svelte
+1. [TailwindCSS](https://tailwindcss.com) - A utility-first CSS framework that can be composed to build any design, directly in markup
+1. [disintegration/imaging](https://github.com/disintegration/imaging) - Amazing yet simple image processing package for Go 
 
 ## Collaboration
 
 If you find this app useful, or are interested in open source collaboration, you can try:
 
-1. Actively provide feedback on problems encountered while you're using this app
-1. Read source code and submit appropriate and necessary PRs
-1. Translate this app into other languages(put translated language files in `frontend/src/lib/i18n/locales/` and draft new PR)
+1. Provide feedback on problems encountered while you're using this app
+1. Explore source code and submit appropriate and necessary PRs
+1. Translate this app into other languages(put language files in `frontend/src/lib/i18n/locales/` and draft new PR)
 
 
 ## Release

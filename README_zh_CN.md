@@ -52,7 +52,7 @@ See the Mulan PSL v2 for more details.
 
 1. 积极反馈使用过程中出现的问题
 1. 阅读源码并提出合适且必要的PR
-1. 将此应用翻译为其他语言（将翻译语言文件放置 `frontend/src/lib/i18n/locales/` 并提交PR）
+1. 将此应用翻译为其他语言（将语言文件放置 `frontend/src/lib/i18n/locales/` 并提交PR）
 
 ## 发布渠道
 
