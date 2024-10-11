@@ -24,6 +24,28 @@
  
 **This is glued together as a single binary with native rendering by the fantastic [Wails](https://wails.io) framework.**
 
+## Download and installation
+
+Resizem can run on the following operating systems:
+
+1. Windows 10/11 amd64/arm64
+1. Linux amd64/arm64
+1. macOS 10.13+ amd64 (Intel)
+1. macOS 11.0+ arm64 (Apple Silicon)
+
+## Pre-compiled binaries
+
+You can obtain a pre-compiled Resizem binary for macOS/Windows/Linux from the [release page](https://github.com/barats/resizem/releases).
+
+## Compiling from source
+
+Before building Resizem, please prepare the building environment as follows: 
+
+1. Download Go from [Go Download Page](https://go.dev/dl/),  Go version 1.20
+2. Download NPM from the [Node Downloads Page](https://go.dev/doc/install) , Node version 20.15
+3. Install Wails via [Wails Installation Page](https://wails.io/docs/gettingstarted/installation/), Wails version 2.9.2
+4. Go to project home path and run `wails build`, more build flag could be found at [Wails CLI Reference](https://wails.io/docs/reference/cli#build)
+
 ## License 
 
 ```

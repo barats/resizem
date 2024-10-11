@@ -23,6 +23,28 @@
  
 **至于Golang后端和前端程序之间的“通信”和“打通”等问题，使用非常优秀的 [Wails](https://wails.io) 框架实现**
 
+## 下载安装
+
+Resizem 支持以下操作系统版本和架构：
+
+1. Windows 10/11 amd64/arm64
+1. Linux amd64/arm64
+1. macOS 10.13+ amd64 (Intel)
+1. macOS 11.0+ arm64 (Apple Silicon)
+
+## 发行版
+
+您可以通过 [release page](https://gitee.com/barat/resizem/releases) 下载 macOS/Windows/Linux 系统支持的二进制文件并直接安装使用
+
+## 源码编译
+
+在编译 Resizem 之前，请确保配置好如下编译环境和工具：
+
+1. 从 [Go Download Page](https://go.dev/dl/) 下载并安装 Go，建议版本 Go 1.20
+2. 从 [Node Downloads Page](https://go.dev/doc/install) 下载并安装 NodeJS，建议版本 Node 20.15
+3. 遵从 [Wails Installation Page](https://wails.io/docs/gettingstarted/installation/) 指导安装 Wails 命令行工具，建议版本 Wails 2.9.2
+4. 在项目根本目录执行 `wails build`，更多命令行 flag 参数请参考 [Wails CLI Reference](https://wails.io/docs/reference/cli#build)
+
 ## 开源协议 
 
 **Resizem** 遵循国产《木兰宽松许可协议》
