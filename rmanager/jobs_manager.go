@@ -13,7 +13,6 @@ package rmanager
 import (
 	"context"
 	"fmt"
-	"image"
 	"log"
 	"math"
 	"path/filepath"
@@ -96,7 +95,7 @@ func dealWithFile(ctx context.Context, wg *sizedwaitgroup.SizedWaitGroup,
 	img.Resize(dw, dh, option.Filter)
 
 	//Write file by format
-	rs, err := writeFileByFormat(dPath, img.Name(), img.Data(), dw, dh, option)
+	rs, err := writeFileByFormat(dPath, img, dw, dh, option)
 	if err != nil {
 		//Event: error
 		log.Println(err)
@@ -110,26 +109,29 @@ func dealWithFile(ctx context.Context, wg *sizedwaitgroup.SizedWaitGroup,
 	SendFileResultEvent(ctx, msg)
 }
 
-func writeFileByFormat(path, name string, data image.Image,
+func writeFileByFormat(path string, img rimage.ResizemImage,
 	width, height int, option rimage.ImageOptions) (string, error) {
-	file := fmt.Sprintf("%s_%dx%d", name, width, height)
+	file := fmt.Sprintf("%s_%dx%d", img.Name(), width, height)
 	dest := filepath.Join(path, file)
 	switch option.Format {
 	case rimage.BMP:
-		return dest + ".bmp", rimage.CreateBMPFile(dest+".bmp", data)
+		return dest + ".bmp", rimage.CreateBMPFile(dest+".bmp", img.Data())
 	case rimage.GIF:
-		return dest + ".gif", rimage.CreateGIFFile(dest+".gif", data, option.GIFNumColors)
+		if anim, ok := img.(rimage.AnimatedGIF); ok {
+			return dest + ".gif", anim.WriteAnimatedGIFFile(dest+".gif", option.GIFNumColors)
+		}
+		return dest + ".gif", rimage.CreateGIFFile(dest+".gif", img.Data(), option.GIFNumColors)
 	case rimage.JPEG:
-		return dest + ".jpeg", rimage.CreateJPEGFile(dest+".jpeg", data, option.JPEGQuality)
+		return dest + ".jpeg", rimage.CreateJPEGFile(dest+".jpeg", img.Data(), option.JPEGQuality)
 	case rimage.JPG:
-		return dest + ".jpg", rimage.CreateJPEGFile(dest+".jpg", data, option.JPEGQuality)
+		return dest + ".jpg", rimage.CreateJPEGFile(dest+".jpg", img.Data(), option.JPEGQuality)
 	case rimage.PNG:
-		return dest + ".png", rimage.CreatePNGFile(dest+".png", data, option.PNGCompression)
+		return dest + ".png", rimage.CreatePNGFile(dest+".png", img.Data(), option.PNGCompression)
 	case rimage.TIFF:
-		return dest + ".tiff", rimage.CreateTIFFFile(dest+".tiff", data, option.TIFFCompression)
+		return dest + ".tiff", rimage.CreateTIFFFile(dest+".tiff", img.Data(), option.TIFFCompression)
 	case rimage.WEBP:
 		//Webp will be transformed to PNG, since I could not find a proper encoder for WebP
-		return dest + ".png", rimage.CreatePNGFile(dest+".png", data, option.PNGCompression)
+		return dest + ".png", rimage.CreatePNGFile(dest+".png", img.Data(), option.PNGCompression)
 	}
 	return "", nil
 }
