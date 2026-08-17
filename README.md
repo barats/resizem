@@ -75,11 +75,3 @@ If you find this app useful, or are interested in open source collaboration, you
 1. Explore source code and submit appropriate and necessary PRs
 1. Translate this app into other languages(put language files in `frontend/src/lib/i18n/locales/` and draft new PR)
 
-
-## Release
-
-1. Github [https://github.com/barats/resizem](https://github.com/barats/resizem)
-1. Gitee [https://gitee.com/barat/resizem](https://gitee.com/barat/resizem)
-
-## Github Stargazers
-[![Stargazers over time](https://starchart.cc/barats/resizem.svg?variant=adaptive)](https://starchart.cc/barats/resizem)
