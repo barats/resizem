@@ -17,17 +17,13 @@
 # Notes
 #   - APP_VERSION comes from wails.json "productVersion"; override with: make release APP_VERSION=1.2.0
 #   - The app and the build CLI are both pinned to wails v2.14.0, the latest v2 release.
-#   - proxy.golang.org is unreachable from this network, so builds default to a
-#     mirror. Override on the command line, e.g.  make release GOPROXY=https://proxy.golang.org,direct
+#   - The Go module proxy comes from the environment (go env GOPROXY).
 
 APP_NAME    := Resizem
 APP_VERSION := $(shell sed -n 's/.*"productVersion"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' wails.json | head -1)
 
-# Overridable on the command line, not by the environment (see note above).
-export GOPROXY = https://goproxy.cn,direct
-
 GO        := go
-GOBIN     := $(shell $(GO) env GOPATH)/bin
+30→GOBIN     := $(shell $(GO) env GOPATH)/bin
 WAILS     := $(or $(shell command -v wails 2>/dev/null), $(GOBIN)/wails)
 WAILS_VER ?= v2.14.0
 
