@@ -137,7 +137,8 @@ require-linux: ## Ensure we are on a Linux host (webkit2gtk system libraries)
 
 release-linux: require-linux tools frontend ## Build the Linux binary ($(LINUX_ARCH)); requires a Linux host
 	@test -n "$(APP_VERSION)" || { echo "error: cannot determine version" >&2; exit 1; }
-	$(WAILS) build $(WAILS_FLAGS) -platform linux/$(LINUX_ARCH)
+	# webkit2_41: modern distros (Ubuntu 24.04+) only ship webkit2gtk 4.1.
+	$(WAILS) build $(WAILS_FLAGS) -tags webkit2_41 -platform linux/$(LINUX_ARCH)
 	@BIN=$$(ls build/bin/$(APP_NAME) build/bin/$(shell echo $(APP_NAME) | tr 'A-Z' 'a-z') 2>/dev/null | head -1); \
 	[ -n "$$BIN" ] || { echo "error: linux binary was not produced" >&2; exit 1; }; \
 	tar -czf build/bin/$(APP_NAME)-linux-$(LINUX_ARCH)-$(APP_VERSION).tar.gz -C build/bin "$$(basename $$BIN)"
