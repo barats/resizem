@@ -10,7 +10,7 @@
   "debounceMS": 500,
   "info": {    
     "productName": "Resizem",
-    "productVersion": "1.0.0",
+    "productVersion": "1.0.1",
     "copyright": "Barat Semet",
     "comments": "Resizem is an app designed for bulk image process,particularly useful for users who need to resize, convert, and manage large numbers of image files at once. Built using Wails (https://wails.io)."    
   },
