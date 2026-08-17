@@ -1,0 +1,94 @@
+name: Release builds
+
+# Builds release artifacts for macOS, Windows, and Linux.
+#   - Manual dispatch (Actions tab): builds all platforms, uploads artifacts,
+#     creates nothing on GitHub.
+#   - Pushing a tag like v1.0.0: builds all platforms and creates a DRAFT
+#     GitHub Release (never auto-publishes — press "Publish" when ready).
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write # to create draft releases on tag pushes
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+      - name: Run Go tests
+        run: go test ./rimage/... ./rmanager/...
+
+  build:
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            target: release-macos
+          - os: windows-latest
+            target: release-windows
+          - os: ubuntu-latest
+            target: release-linux
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install make (Windows)
+        if: runner.os == 'Windows'
+        run: choco install make --no-progress -y
+      - name: Install NSIS for the Windows installer
+        if: runner.os == 'Windows'
+        run: |
+          choco install nsis --no-progress -y
+          echo "PATH=$PATH:C:\Program Files (x86)\NSIS" >> "$GITHUB_ENV"
+      - name: Install Linux system dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev libayatana-appindicator3-dev
+      - name: Build release (${{ matrix.target }})
+        run: make ${{ matrix.target }}
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: resizem-${{ matrix.os }}
+          path: |
+            build/bin/*.zip
+            build/bin/*.tar.gz
+            build/bin/*installer*.exe
+            build/bin/*.exe
+          if-no-files-found: warn
+
+  release:
+    # Attach the built assets to a GitHub Release. Draft only: nothing is
+    # published until the maintainer clicks "Publish release".
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          files: artifacts/**
