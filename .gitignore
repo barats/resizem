@@ -3,3 +3,4 @@ node_modules
 frontend/dist
 build/windows/installer/tmp
 build_scripts.md
+.tools

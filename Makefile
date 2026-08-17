@@ -23,8 +23,11 @@ APP_NAME    := Resizem
 APP_VERSION := $(shell sed -n 's/.*"productVersion"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' wails.json | head -1)
 
 GO        := go
-30→GOBIN     := $(shell $(GO) env GOPATH)/bin
-WAILS     := $(or $(shell command -v wails 2>/dev/null), $(GOBIN)/wails)
+# Tools are installed into a project-local dir so builds don't depend on the
+# Go bin path, which varies across environments and CI runners.
+LOCALBIN  := $(CURDIR)/.tools/bin
+WAILS     := $(or $(shell command -v wails 2>/dev/null), $(LOCALBIN)/wails)
+WAILS_VER ?= v2.14.0
 WAILS_VER ?= v2.14.0
 
 MAC_ARCH     ?= universal
@@ -54,11 +57,12 @@ version: ## Print the version this build would use
 tools: ## Ensure the wails CLI is installed
 	@if command -v wails >/dev/null 2>&1; then \
 		echo "wails: $$(command -v wails)"; \
-	elif [ -x "$(WAILS)" ]; then \
-		echo "wails: $(WAILS)"; \
+	elif [ -x "$(LOCALBIN)/wails" ]; then \
+		echo "wails: $(LOCALBIN)/wails"; \
 	else \
-		echo "Installing wails $(WAILS_VER)..."; \
-		$(GO) install github.com/wailsapp/wails/v2/cmd/wails@$(WAILS_VER); \
+		echo "Installing wails $(WAILS_VER) into $(LOCALBIN)..."; \
+		mkdir -p "$(LOCALBIN)"; \
+		GOBIN="$(LOCALBIN)" $(GO) install github.com/wailsapp/wails/v2/cmd/wails@$(WAILS_VER); \
 	fi
 
 nsis: ## Ensure NSIS (makensis) is available for Windows installers
