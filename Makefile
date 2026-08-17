@@ -16,9 +16,7 @@
 #
 # Notes
 #   - APP_VERSION comes from wails.json "productVersion"; override with: make release APP_VERSION=1.2.0
-#   - go.mod pins wails/v2 v2.9.2. We build with the v2.14.0 CLI because the
-#     v2.9.x CLI does not compile under go1.25 (golang.org/x/tools incompatibility).
-#     -nosyncgomod keeps go.mod untouched by the CLI.
+#   - The app and the build CLI are both pinned to wails v2.14.0, the latest v2 release.
 #   - proxy.golang.org is unreachable from this network, so builds default to a
 #     mirror. Override on the command line, e.g.  make release GOPROXY=https://proxy.golang.org,direct
 
@@ -37,9 +35,9 @@ MAC_ARCH     ?= universal
 WINDOWS_ARCH ?= amd64
 LINUX_ARCH   ?= amd64
 
-# Shared wails build flags: keep committed bindings and go.mod, skip the
-# frontend (built by the `frontend` target) and mod tidy.
-WAILS_FLAGS := -skipbindings -nosyncgomod -m -s
+# Shared wails build flags: keep committed bindings, skip the frontend
+# (built by the `frontend` target) and mod tidy.
+WAILS_FLAGS := -skipbindings -m -s
 
 UNAME_S := $(shell uname -s)
 
@@ -107,10 +105,7 @@ release-all: clean ## Attempt every platform (Linux step needs a Linux host)
 	@$(MAKE) release-linux || { echo "Linux skipped: not on a Linux host (see .github/workflows/release.yml)."; true; }
 	@$(MAKE) restore
 
-restore: ## Revert the few files the wails CLI regenerates during a build
-	git checkout -- frontend/src/lib/wailsjs/runtime/runtime.js \
-		frontend/src/lib/wailsjs/runtime/runtime.d.ts \
-		build/windows/installer/wails_tools.nsh 2>/dev/null || true
+restore: ## Remove the package-lock.json that npm creates during a build
 	rm -f frontend/package-lock.json
 
 release-macos: tools frontend ## Build + zip the macOS app ($(MAC_ARCH))

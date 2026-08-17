@@ -40,10 +40,18 @@ Resizem 支持以下操作系统版本和架构：
 
 在编译 Resizem 之前，请确保配置好如下编译环境和工具：
 
-1. 从 [Go Download Page](https://go.dev/dl/) 下载并安装 Go，建议版本 Go 1.20
-2. 从 [Node Downloads Page](https://go.dev/doc/install) 下载并安装 NodeJS，建议版本 Node 20.15
-3. 遵从 [Wails Installation Page](https://wails.io/docs/gettingstarted/installation/) 指导安装 Wails 命令行工具，建议版本 Wails 2.9.2
-4. 在项目根本目录执行 `wails build`，更多命令行 flag 参数请参考 [Wails CLI Reference](https://wails.io/docs/reference/cli#build)
+1. 从 [Go Download Page](https://go.dev/dl/) 下载 Go 1.25+
+2. 从 [Node.js Download Page](https://nodejs.org/) 下载 Node.js 22+
+3. 安装 Wails v2.14.0（最新的 v2 版本）：`go install github.com/wailsapp/wails/v2/cmd/wails@v2.14.0`，详情见 [Wails Installation Page](https://wails.io/docs/gettingstarted/installation/)
+4. 在项目根目录执行 `wails build`，更多命令行 flag 参数请参考 [Wails CLI Reference](https://wails.io/docs/reference/cli#build)
+
+如需构建所有平台的发行版安装包，可使用项目自带的 Makefile：
+
+- `make release` — 为当前主机构建发行包（在 Mac 上即为 macOS + Windows）
+- `make release-macos`、`make release-windows`、`make release-linux` — 构建指定平台
+- `make release-linux` 需要在 Linux 主机上执行；GitHub Actions 工作流（`.github/workflows/release.yml`）会在 CI 中构建全部三个平台
+
+构建产物输出到 `build/bin/` 目录。
 
 ## 开源协议 
 

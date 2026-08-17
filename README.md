@@ -39,12 +39,20 @@ You can obtain a pre-compiled Resizem binary for macOS/Windows/Linux from the [r
 
 ## Compiling from source
 
-Before building Resizem, please prepare the building environment as follows: 
+Before building Resizem, please prepare the building environment as follows:
 
-1. Download Go from [Go Download Page](https://go.dev/dl/),  Go version 1.20
-2. Download NPM from the [Node Downloads Page](https://go.dev/doc/install) , Node version 20.15
-3. Install Wails via [Wails Installation Page](https://wails.io/docs/gettingstarted/installation/), Wails version 2.9.2
-4. Go to project home path and run `wails build`, more build flag could be found at [Wails CLI Reference](https://wails.io/docs/reference/cli#build)
+1. Download Go 1.25+ from the [Go Download Page](https://go.dev/dl/)
+2. Download Node.js 22+ from the [Node.js Download Page](https://nodejs.org/)
+3. Install Wails v2.14.0 (the latest v2 release) via `go install github.com/wailsapp/wails/v2/cmd/wails@v2.14.0`, see the [Wails Installation Page](https://wails.io/docs/gettingstarted/installation/)
+4. Go to the project home path and run `wails build`, more build flags can be found at the [Wails CLI Reference](https://wails.io/docs/reference/cli#build)
+
+To build release artifacts for all platforms, use the included Makefile:
+
+- `make release` — build release artifacts for the current host (macOS + Windows when run on a Mac)
+- `make release-macos`, `make release-windows`, `make release-linux` — build a specific platform
+- `make release-linux` requires a Linux host; the GitHub Actions workflow (`.github/workflows/release.yml`) builds all three platforms in CI
+
+Artifacts are written to `build/bin/`.
 
 ## License 
 
