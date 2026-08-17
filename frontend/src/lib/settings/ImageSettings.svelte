@@ -61,7 +61,7 @@ See the Mulan PSL v2 for more details. -->
 		<p class="text-lg text-gray-500">{$_('settings.image.tiff_title')}</p>
 		<p class="text-xs text-gray-500">{$_('settings.image.tiff_desc')}</p>
 	</div>
-	<div class="pl-5">
+	<div style="--wails-draggable:no-drag" class="pl-5">
 		<Select items={jpgCompressionOptions} bind:value={$tiffCompressionValue} />
 	</div>
 </div>
@@ -70,7 +70,7 @@ See the Mulan PSL v2 for more details. -->
 		<p class="text-lg text-gray-500">{$_('settings.image.png_title')}</p>
 		<p class="text-xs text-gray-500">{$_('settings.image.png_desc')}</p>
 	</div>
-	<div class="pl-5">
+	<div style="--wails-draggable:no-drag" class="pl-5">
 		<Select items={pngCompressionOptions} bind:value={$pngCompressionValue} />
 	</div>
 </div>

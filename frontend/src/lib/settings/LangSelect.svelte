@@ -21,7 +21,7 @@ See the Mulan PSL v2 for more details. -->
 </script>
 
 <Label defaultClass="text-lg font-medium" for="lang-select">{$_('settings.language.title')}</Label>
-<div class="pt-5">
+<div style="--wails-draggable:no-drag" class="pt-5">
 	<Select
 		id="lang-select"
 		placeholder={$_('home.options.choose')}
