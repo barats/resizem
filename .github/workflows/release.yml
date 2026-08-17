@@ -48,7 +48,7 @@ jobs:
           go-version: '1.25'
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
       - name: Install make (Windows)
         if: runner.os == 'Windows'
         run: choco install make --no-progress -y
