@@ -7,7 +7,7 @@
 	},
 	"home": {
 		"dropzone": {
-			"message": "<span class='font-semibold'>點擊上傳</span>",
+			"upload": "點擊上傳",
 			"doing": "正在轉換，請稍候...",
 			"types": "支持圖片格式：BMP, PNG, JPG, JPEG, TIFF, WebP or GIF",
 			"files_selected": "選擇了 {count} 個文件"

@@ -15,17 +15,17 @@ See the Mulan PSL v2 for more details. -->
 	import { filesList, resultList } from '$lib/app_stores';
 	import AppButtons from '$lib/AppButtons.svelte';
 
-	let scrollableDiv;
+	let scrollableDiv = $state();
 
-	$: if (scrollableDiv) {
-		if ($filesList.length > 0 || $resultList.length > 0) {
+	$effect(() => {
+		if (scrollableDiv && ($filesList.length > 0 || $resultList.length > 0)) {
 			scrollToBottom(scrollableDiv);
 		}
-	}
+	});
 
-	const scrollToBottom = (node) => {
+	function scrollToBottom(node) {
 		node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
-	};
+	}
 </script>
 
 <main class="flex h-full min-h-0 w-full flex-col gap-5">

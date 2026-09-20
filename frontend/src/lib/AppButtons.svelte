@@ -9,7 +9,7 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. -->
 
 <script>
-	import { Button, Spinner } from 'flowbite-svelte';
+	import { Button } from 'flowbite-svelte';
 	import { EventsEmit } from './wailsjs/runtime/runtime';
 	import { EVENT_CANCEL, EVENT_CLEAR_HISTORY, EVENT_START } from './app_consts';
 	import { doing, filesList, resultList } from './app_stores';
@@ -31,22 +31,22 @@ See the Mulan PSL v2 for more details. -->
 </script>
 
 {#if $doing}
-	<Button size="xl" shadow color="blue" disabled>
-		<Spinner color="white" />{$_('home.buttons.doing')}
+	<Button size="xl" shadow color="blue" disabled loading>
+		{$_('home.buttons.doing')}
 	</Button>
-	<Button size="xl" shadow color="red" on:click={handleCancel}>{$_('home.buttons.cancel')}</Button>
+	<Button size="xl" shadow color="red" onclick={handleCancel}>
+		{$_('home.buttons.cancel')}
+	</Button>
 {:else}
-	<Button
-		size="xl"
-		shadow
-		color="blue"
-		disabled={$filesList.length === 0}
-		on:click={handleStart}>{$_('home.buttons.start')}</Button
-	>
+	<Button size="xl" shadow color="blue" disabled={$filesList.length === 0} onclick={handleStart}>
+		{$_('home.buttons.start')}
+	</Button>
 	<Button
 		size="xl"
 		color="light"
 		disabled={$filesList.length === 0 && $resultList.length === 0}
-		on:click={handleClear}>{$_('home.buttons.clear')}</Button
+		onclick={handleClear}
 	>
+		{$_('home.buttons.clear')}
+	</Button>
 {/if}

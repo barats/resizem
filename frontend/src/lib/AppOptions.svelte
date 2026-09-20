@@ -9,16 +9,14 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. -->
 
 <script>
-	import { NumberInput, Label, Select, Helper } from 'flowbite-svelte';
+	import { Input, Label, Select, Helper } from 'flowbite-svelte';
 	import { OutputImagesTypes, ResampleFilterTypes } from '$lib/wailsjs/go/rmanager/TypeManager.js';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { filterValue, formatValue, heightValue, widthValue } from './app_stores';
 
-	let showWidthHelper = false,
-		showHeightHelper = false;
-
-	let allFormats, allFilters;
+	let allFormats = $state();
+	let allFilters = $state();
 
 	onMount(() => {
 		OutputImagesTypes().then((data) => {
@@ -33,17 +31,8 @@ See the Mulan PSL v2 for more details. -->
 	});
 
 	// null means the field is empty ("not set"), which is valid; only negatives are invalid.
-	$: if ($widthValue < 0) {
-		showWidthHelper = true;
-	} else {
-		showWidthHelper = false;
-	}
-
-	$: if ($heightValue < 0) {
-		showHeightHelper = true;
-	} else {
-		showHeightHelper = false;
-	}
+	let showWidthHelper = $derived($widthValue < 0);
+	let showHeightHelper = $derived($heightValue < 0);
 </script>
 
 <div class="grid grid-cols-1 gap-2">
@@ -63,7 +52,7 @@ See the Mulan PSL v2 for more details. -->
 	<div class="grid grid-cols-2 gap-5">
 		<div>
 			<Label for="width">{$_('home.options.width.title')}</Label>
-			<NumberInput id="width" bind:value={$widthValue} />
+			<Input id="width" type="number" bind:value={$widthValue} />
 			{#if showWidthHelper}
 				<Helper class="mt-2" color="red">
 					<span class="font-medium">{$_('home.options.width.helper1')}</span>
@@ -75,7 +64,7 @@ See the Mulan PSL v2 for more details. -->
 		</div>
 		<div>
 			<Label for="height">{$_('home.options.height.title')}</Label>
-			<NumberInput id="height" bind:value={$heightValue} />
+			<Input id="height" type="number" bind:value={$heightValue} />
 			{#if showHeightHelper}
 				<Helper class="mt-2" color="red">
 					<span class="font-medium">{$_('home.options.height.helper1')}</span>

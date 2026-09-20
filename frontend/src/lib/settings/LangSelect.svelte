@@ -13,20 +13,16 @@ See the Mulan PSL v2 for more details. -->
 	import { _ } from 'svelte-i18n';
 	import { appLocales, getAppLocale, setAppLocale } from '../i18n';
 
-	let selected = getAppLocale();
-
-	const handleSelect = () => {
-		setAppLocale(selected);
-	};
+	let selected = $state(getAppLocale());
 </script>
 
-<Label defaultClass="text-lg font-medium" for="lang-select">{$_('settings.language.title')}</Label>
+<Label for="lang-select" class="text-lg font-medium">{$_('settings.language.title')}</Label>
 <div style="--wails-draggable:no-drag" class="pt-5">
 	<Select
 		id="lang-select"
 		placeholder={$_('home.options.choose')}
 		bind:value={selected}
 		items={appLocales}
-		on:change={handleSelect}
+		onchange={() => setAppLocale(selected)}
 	></Select>
 </div>

@@ -8,9 +8,27 @@ EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
 MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. */
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
+
+@plugin 'flowbite/plugin';
+
+@source '../node_modules/flowbite-svelte/dist';
+@source '../node_modules/flowbite-svelte-icons/dist';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--color-primary-50: #eff6ff;
+	--color-primary-100: #dbeafe;
+	--color-primary-200: #bfdbfe;
+	--color-primary-300: #93c5fd;
+	--color-primary-400: #60a5fa;
+	--color-primary-500: #3b82f6;
+	--color-primary-600: #2563eb;
+	--color-primary-700: #1d4ed8;
+	--color-primary-800: #1e40af;
+	--color-primary-900: #1e3a8a;
+}
 
 body {
 	background-color: white;

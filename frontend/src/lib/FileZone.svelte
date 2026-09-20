@@ -13,57 +13,56 @@ See the Mulan PSL v2 for more details. -->
 	import { _ } from 'svelte-i18n';
 	import { doing, filesList } from '$lib/app_stores';
 	import { OpenFilesDialog } from '$lib/wailsjs/go/rmanager/FileManager';
-</script>
 
-<Dropzone
-	id="dropzone"
-	style="--wails-drop-target:drop"
-	class={$doing ? 'pointer-events-none opacity-60' : ''}
-	on:dragover={(event) => {
-		event.preventDefault();
-	}}
-	on:drop={(event) => {
-		event.preventDefault();
-	}}
-	on:dragenter={(event) => {
-		event.preventDefault();
-	}}
-	on:click={(event) => {
+	// The Dropzone forwards click to its hidden file input; preventing the
+	// default there stops the webview's own picker so Wails can open ours.
+	function openDialog(event) {
 		event.preventDefault();
 		if (!$doing) {
 			OpenFilesDialog().then(() => {});
 		}
-	}}
->
-	<svg
-		aria-hidden="true"
-		class="mb-3 h-10 w-10 text-gray-400"
-		fill="none"
-		stroke="currentColor"
-		viewBox="0 0 24 24"
-		xmlns="http://www.w3.org/2000/svg"
-		><path
-			stroke-linecap="round"
-			stroke-linejoin="round"
-			stroke-width="2"
-			d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-		/></svg
+	}
+</script>
+
+<div style="--wails-drop-target:drop">
+	<button
+		type="button"
+		class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-24 focus:z-30 focus:m-2 focus:rounded-lg focus:border focus:border-primary-600 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-700"
+		onclick={openDialog}
 	>
-	{#if $doing}
-		<p class="mb-2 text-lg text-gray-500">
-			{$_('home.dropzone.doing')}
+		{$_('home.dropzone.upload')}
+	</button>
+	<Dropzone class={$doing ? 'pointer-events-none opacity-60' : ''} onclick={openDialog}>
+		<svg
+			aria-hidden="true"
+			class="mb-3 h-10 w-10 text-gray-400"
+			fill="none"
+			stroke="currentColor"
+			viewBox="0 0 24 24"
+			xmlns="http://www.w3.org/2000/svg"
+			><path
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				stroke-width="2"
+				d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+			/></svg
+		>
+		{#if $doing}
+			<p class="mb-2 text-lg text-gray-500">
+				{$_('home.dropzone.doing')}
+			</p>
+		{:else}
+			<p class="mb-2 text-lg font-semibold text-gray-500">
+				{$_('home.dropzone.upload')}
+			</p>
+		{/if}
+		<p class="mb-2 text-xs text-gray-500">
+			{$_('home.dropzone.types')}
 		</p>
-	{:else}
-		<p class="mb-2 text-lg text-gray-500">
-			{@html $_('home.dropzone.message')}
-		</p>
-	{/if}
-	<p class="mb-2 text-xs text-gray-500">
-		{$_('home.dropzone.types')}
-	</p>
-	{#if $filesList.length > 0}
-		<p>
-			{$_('home.dropzone.files_selected', { values: { count: $filesList.length } })}
-		</p>
-	{/if}
-</Dropzone>
+		{#if $filesList.length > 0}
+			<p>
+				{$_('home.dropzone.files_selected', { values: { count: $filesList.length } })}
+			</p>
+		{/if}
+	</Dropzone>
+</div>

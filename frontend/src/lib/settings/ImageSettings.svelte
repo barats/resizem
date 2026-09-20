@@ -35,7 +35,7 @@ See the Mulan PSL v2 for more details. -->
 	];
 </script>
 
-<Label defaultClass="text-lg font-medium">{$_('settings.image.title')}</Label>
+<Label class="text-lg font-medium">{$_('settings.image.title')}</Label>
 <div class="grid grid-cols-2 border-b-2 pb-5">
 	<div>
 		<p class="text-lg text-gray-500">{$_('settings.image.jpg_title')}</p>

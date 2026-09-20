@@ -7,7 +7,7 @@
 	},
 	"home": {
 		"dropzone": {
-			"message": "<span class='font-semibold'>Click to Upload</span>",
+			"upload": "Click to Upload",
 			"doing": "Converting, please wait...",
 			"types": "BMP, PNG, JPG, JPEG, TIF, TIFF, WebP or GIF",
 			"files_selected": "{count} file(s) selected"

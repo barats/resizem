@@ -10,18 +10,23 @@ See the Mulan PSL v2 for more details. -->
 
 <script>
 	import { Listgroup, ListgroupItem } from 'flowbite-svelte';
-	import { FileImageOutline, CheckCircleOutline, CloseCircleOutline, CloseOutline } from 'flowbite-svelte-icons';
+	import {
+		FileImageOutline,
+		CheckCircleOutline,
+		CloseCircleOutline,
+		CloseOutline
+	} from 'flowbite-svelte-icons';
 	import { filesList, resultList } from '$lib/app_stores';
 	import { _ } from 'svelte-i18n';
 
-	$: queueCount = $filesList.length;
-	$: resultCount = $resultList.length;
-	$: isEmpty = queueCount === 0 && resultCount === 0;
+	let queueCount = $derived($filesList.length);
+	let resultCount = $derived($resultList.length);
+	let isEmpty = $derived(queueCount === 0 && resultCount === 0);
 
-	$: friendlyErrors = [
+	let friendlyErrors = $derived([
 		{ pattern: /unknown format|unsupported/i, text: $_('home.errors.unknown_format') },
 		{ pattern: /eof|truncat/i, text: $_('home.errors.unexpected_eof') }
-	];
+	]);
 
 	function friendlyMessage(message) {
 		if (!message) {
@@ -48,17 +53,17 @@ See the Mulan PSL v2 for more details. -->
 				<h2 class="mb-1 px-1 text-sm font-medium text-gray-500">
 					{$_('home.list.queue')} ({queueCount})
 				</h2>
-				<Listgroup class="border-0">
+				<Listgroup class="w-full">
 					{#each $filesList as file (file)}
-						<ListgroupItem class="flex items-center gap-2 text-sm">
+						<ListgroupItem class="text-sm">
 							<FileImageOutline class="h-5 w-5 shrink-0 text-gray-400" />
 							<span class="min-w-0 flex-1 truncate" title={file}>{file}</span>
 							<button
 								type="button"
-								class="shrink-0 rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200"
+								class="shrink-0 rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 focus:ring-2 focus:ring-gray-200 focus:outline-none"
 								aria-label={$_('home.list.remove')}
 								title={$_('home.list.remove')}
-								on:click={() => removeQueuedFile(file)}
+								onclick={() => removeQueuedFile(file)}
 							>
 								<CloseOutline class="h-4 w-4" />
 							</button>
@@ -73,9 +78,9 @@ See the Mulan PSL v2 for more details. -->
 				<h2 class="mb-1 px-1 text-sm font-medium text-gray-500">
 					{$_('home.list.results')} ({resultCount})
 				</h2>
-				<Listgroup class="border-0">
+				<Listgroup class="w-full">
 					{#each $resultList as item, i (i)}
-						<ListgroupItem class="flex items-center gap-2 text-sm">
+						<ListgroupItem class="text-sm">
 							{#if item.status === 1}
 								<CheckCircleOutline class="h-5 w-5 shrink-0 text-green-600" />
 								<span class="min-w-0 flex-1 truncate" title={item.name}>{item.name}</span>

@@ -2,3 +2,13 @@
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# Build output
+.svelte-kit
+dist
+build
+node_modules
+package.json.md5
+
+# Wails-generated bindings
+src/lib/wailsjs

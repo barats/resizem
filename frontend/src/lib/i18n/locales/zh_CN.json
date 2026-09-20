@@ -7,7 +7,7 @@
 	},
 	"home": {
 		"dropzone": {
-			"message": "<span class='font-semibold'>点击上传</span>",
+			"upload": "点击上传",
 			"doing": "正在转换，请稍候...",
 			"types": "支持图片格式： BMP, PNG, JPG, JPEG, TIFF, WebP or GIF",
 			"files_selected": "选择了 {count} 个文件"

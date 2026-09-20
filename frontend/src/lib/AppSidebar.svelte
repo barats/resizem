@@ -9,19 +9,18 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. -->
 
 <script>
-	import { page } from '$app/stores';
-	import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper, Button } from 'flowbite-svelte';
+	import { page } from '$app/state';
+	import { Sidebar, SidebarGroup, SidebarItem, Button } from 'flowbite-svelte';
 	import { CogOutline, GithubSolid, ImageSolid, InfoCircleSolid } from 'flowbite-svelte-icons';
 	import { BrowserOpenURL } from '$lib/wailsjs/runtime/runtime';
 	import { _ } from 'svelte-i18n';
 	import AppAbout from './AppAbout.svelte';
 
-	let visible = false;
-	$: activeUrl = $page.url.pathname;
+	let visible = $state(false);
 
-	let activeClass =
+	const activeClass =
 		'flex items-center justify-center p-4 text-base font-normal text-primary-900 bg-primary-200 rounded-lg hover:bg-primary-100';
-	let nonActiveClass =
+	const nonActiveClass =
 		'flex items-center justify-center p-4 text-base font-normal text-primary-900 rounded-lg hover:bg-primary-100';
 
 	const GithubHomePage = () => {
@@ -30,74 +29,64 @@ See the Mulan PSL v2 for more details. -->
 </script>
 
 <Sidebar
-	{activeUrl}
-	{activeClass}
-	{nonActiveClass}
+	activeUrl={page.url.pathname}
 	ariaLabel="sidebar"
-	asideClass="relative top-0 left-0 pt-10 z-20 flex flex-col flex-shrink-0 w-20 h-full transition-width"
+	position="fixed"
+	alwaysOpen
+	disableBreakpoints
+	class="relative z-20 flex h-full w-20 flex-shrink-0 flex-col"
+	classes={{
+		div: 'h-full border-r-2 border-gray-200 bg-white px-0 py-0',
+		active: activeClass,
+		nonactive: nonActiveClass
+	}}
 >
-	<SidebarWrapper divClass="bg-white h-full border-r-2">
-		<SidebarGroup>
-			<SidebarItem
-				href="/"
-				spanClass="display:none;"
-				aria-label={$_('nav.home')}
-				title={$_('nav.home')}
-			>
-				<svelte:fragment slot="icon">
-					<ImageSolid
-						class="h-5 w-5  text-gray-500 transition duration-75  group-hover:text-gray-900"
-					/>
-				</svelte:fragment>
-			</SidebarItem>
-			<SidebarItem
-				href="/settings/"
-				spanClass="display:none;"
-				aria-label={$_('nav.settings')}
-				title={$_('nav.settings')}
-			>
-				<svelte:fragment slot="icon">
-					<CogOutline
-						class="h-5 w-5 text-gray-500 transition duration-75  group-hover:text-gray-900"
-					/>
-				</svelte:fragment>
-			</SidebarItem>
-		</SidebarGroup>
+	<SidebarGroup>
+		<SidebarItem href="/" spanClass="hidden" aria-label={$_('nav.home')} title={$_('nav.home')}>
+			{#snippet icon()}
+				<ImageSolid
+					class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+				/>
+			{/snippet}
+		</SidebarItem>
+		<SidebarItem
+			href="/settings/"
+			spanClass="hidden"
+			aria-label={$_('nav.settings')}
+			title={$_('nav.settings')}
+		>
+			{#snippet icon()}
+				<CogOutline
+					class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+				/>
+			{/snippet}
+		</SidebarItem>
+	</SidebarGroup>
 
-		<SidebarGroup>
-			<div
-				class="absolute bottom-5 flex w-full flex-col flex-wrap items-center justify-center gap-1"
-			>
-				<Button
-					color="light"
-					size="xs"
-					class="w-11/12 border-0 !p-2"
-					aria-label={$_('nav.github')}
-					title={$_('nav.github')}
-					on:click={GithubHomePage}
-				>
-					<GithubSolid class="h-5 w-5" />
-				</Button>
-				<Button
-					color="light"
-					size="xs"
-					class="w-11/12 border-0 !p-2"
-					aria-label={$_('nav.about')}
-					title={$_('nav.about')}
-					on:click={() => {
-						visible = true;
-					}}
-				>
-					<InfoCircleSolid class="h-5 w-5" />
-				</Button>
-			</div>
-		</SidebarGroup>
-	</SidebarWrapper>
+	<SidebarGroup
+		class="absolute bottom-5 flex w-full flex-col flex-wrap items-center justify-center gap-1"
+	>
+		<Button
+			color="light"
+			size="xs"
+			class="w-11/12 border-0 p-2!"
+			aria-label={$_('nav.github')}
+			title={$_('nav.github')}
+			onclick={GithubHomePage}
+		>
+			<GithubSolid class="h-5 w-5" />
+		</Button>
+		<Button
+			color="light"
+			size="xs"
+			class="w-11/12 border-0 p-2!"
+			aria-label={$_('nav.about')}
+			title={$_('nav.about')}
+			onclick={() => (visible = true)}
+		>
+			<InfoCircleSolid class="h-5 w-5" />
+		</Button>
+	</SidebarGroup>
 </Sidebar>
 
-<AppAbout
-	{visible}
-	onClose={() => {
-		visible = false;
-	}}
-/>
+<AppAbout bind:visible />

@@ -14,7 +14,7 @@ See the Mulan PSL v2 for more details. -->
 	import { _ } from 'svelte-i18n';
 </script>
 
-<Label defaultClass="text-lg font-medium">{$_('settings.path.title')}</Label>
+<Label class="text-lg font-medium">{$_('settings.path.title')}</Label>
 <div class="grid grid-cols-2 justify-center gap-5 pt-5">
 	<p class="text-sm text-gray-500">{$_('settings.path.ask_me_desc')}</p>
 	<Toggle bind:checked={$askWheretoSave}>{$_('settings.path.ask_me')}</Toggle>

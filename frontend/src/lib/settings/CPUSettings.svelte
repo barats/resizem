@@ -14,10 +14,10 @@ See the Mulan PSL v2 for more details. -->
 	import { _ } from 'svelte-i18n';
 
 	// Slider step is 1; round defensively in case an older persisted value is fractional.
-	$: cpuLevel = Math.min(3, Math.max(1, Math.round($cpuUsageValue || 1)));
+	let cpuLevel = $derived(Math.min(3, Math.max(1, Math.round($cpuUsageValue || 1))));
 </script>
 
-<Label for="range-minmax" defaultClass="text-lg font-medium">{$_('settings.cpu.title')}</Label>
+<Label for="range-minmax" class="text-lg font-medium">{$_('settings.cpu.title')}</Label>
 <div class="grid grid-cols-2 gap-5">
 	<div style="--wails-draggable:no-drag">
 		<Range
@@ -35,7 +35,8 @@ See the Mulan PSL v2 for more details. -->
 				class="text-center text-sm {cpuLevel === 2 ? 'font-medium text-gray-900' : 'text-gray-500'}"
 				>{$_('settings.cpu.high')}</span
 			>
-			<span class="text-right text-sm {cpuLevel === 3 ? 'font-medium text-gray-900' : 'text-gray-500'}"
+			<span
+				class="text-right text-sm {cpuLevel === 3 ? 'font-medium text-gray-900' : 'text-gray-500'}"
 				>{$_('settings.cpu.most')}</span
 			>
 		</div>

@@ -9,26 +9,22 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. -->
 
 <script>
-	// @ts-nocheck
 	import { Button, Modal } from 'flowbite-svelte';
 	import { _, json } from 'svelte-i18n';
-	export let visible = false;
-	export let onClose;
+
+	let { visible = $bindable(false) } = $props();
+
+	let aboutContent = $derived(/** @type {string[]} */ ($json('about.content')) ?? []);
 </script>
 
-<Modal
-	title={$_('about.title')}
-	bind:open={visible}
-	on:close={() => {
-		onClose();
-	}}
->
-	{#each $json('about.content') as item}
+<Modal bind:open={visible} title={$_('about.title')}>
+	{#each aboutContent as item, i (i)}
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -- static legal copy bundled with the app, not user input -->
 		{@html item}
 	{/each}
-	<svelte:fragment slot="footer">
+	{#snippet footer()}
 		<div class="w-full text-right">
-			<Button on:click={() => (visible = false)}>{$_('about.okay_btn')}</Button>
+			<Button onclick={() => (visible = false)}>{$_('about.okay_btn')}</Button>
 		</div>
-	</svelte:fragment>
+	{/snippet}
 </Modal>

@@ -14,7 +14,7 @@ See the Mulan PSL v2 for more details. -->
 	import AppSidebar from '$lib/AppSidebar.svelte';
 	import { onMount } from 'svelte';
 	import '../app.css';
-	import { Alert, CloseButton } from 'flowbite-svelte';
+	import { Alert } from 'flowbite-svelte';
 	import { EventsEmit, EventsOn } from '$lib/wailsjs/runtime/runtime.js';
 	import {
 		askWheretoSave,
@@ -43,9 +43,11 @@ See the Mulan PSL v2 for more details. -->
 	} from '$lib/app_consts';
 	import { OpenDirectoryDialog, StartHandleFiles } from '$lib/wailsjs/go/rmanager/FileManager';
 
+	let { children } = $props();
+
 	let destPath;
-	let err_msg = '';
-	let showAlert = false;
+	let err_msg = $state('');
+	let showAlert = $state(false);
 
 	onMount(() => {
 		EventsOn(EVENT_BACKEND_ERROR, (message) => {
@@ -93,7 +95,7 @@ See the Mulan PSL v2 for more details. -->
 		});
 
 		//Backend Event: On Before Exit
-		EventsOn(EVENT_BEFORE_EXIT, (msg) => {
+		EventsOn(EVENT_BEFORE_EXIT, () => {
 			EventsEmit(EVENT_CANCEL);
 			EventsEmit(EVENT_CLEAR_HISTORY);
 		});
@@ -136,15 +138,10 @@ See the Mulan PSL v2 for more details. -->
 
 <div id="main-content" class="flex h-screen overflow-hidden">
 	<AppSidebar />
-	<div id="right-content" class="flex min-w-0 flex-1 flex-col pb-6 pr-10 pt-8 pl-5">
-		{#if showAlert}
-			<Alert color="red" class="mb-4 shrink-0">
-				<div class="flex items-start justify-between gap-3">
-					<span>{err_msg}</span>
-					<CloseButton class="-me-1 -my-1" on:click={() => (showAlert = false)} />
-				</div>
-			</Alert>
-		{/if}
-		<slot />
+	<div id="right-content" class="flex min-w-0 flex-1 flex-col pt-8 pr-10 pb-6 pl-5">
+		<Alert color="red" dismissable bind:alertStatus={showAlert} class="mb-4 shrink-0">
+			{err_msg}
+		</Alert>
+		{@render children()}
 	</div>
 </div>
