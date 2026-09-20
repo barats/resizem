@@ -35,70 +35,85 @@ See the Mulan PSL v2 for more details. -->
 	];
 </script>
 
-<Label class="text-lg font-medium">{$_('settings.image.title')}</Label>
-<div class="grid grid-cols-2 border-b-2 pb-5">
-	<div>
-		<p class="text-lg text-gray-500">{$_('settings.image.jpg_title')}</p>
-		<p class="text-xs text-gray-500">{$_('settings.image.jpg_desc')}</p>
+<section>
+	<Label class="text-sm font-semibold text-gray-900">{$_('settings.image.title')}</Label>
+	<div class="mt-1">
+		<div class="grid grid-cols-2 items-center gap-4 border-b border-gray-100 py-4">
+			<div>
+				<p class="text-sm font-medium text-gray-900">{$_('settings.image.jpg_title')}</p>
+				<p class="text-sm text-gray-500">{$_('settings.image.jpg_desc')}</p>
+			</div>
+			<div style="--wails-draggable:no-drag" class="pl-5">
+				<Range
+					min="1"
+					max="100"
+					bind:value={$jpegQualityValue}
+					aria-label={$_('settings.image.jpg_title')}
+				/>
+				<div class="mt-2 text-sm text-gray-500">
+					{$_('settings.image.jpg_cur_value')}
+					{$jpegQualityValue}
+				</div>
+			</div>
+		</div>
+		<div class="grid grid-cols-2 items-center gap-4 border-b border-gray-100 py-4">
+			<div>
+				<p class="text-sm font-medium text-gray-900">{$_('settings.image.gif_title')}</p>
+				<p class="text-sm text-gray-500">{$_('settings.image.gif_desc')}</p>
+			</div>
+			<div style="--wails-draggable:no-drag" class="pl-5">
+				<Range
+					min="1"
+					max="256"
+					bind:value={$gifColorsValue}
+					aria-label={$_('settings.image.gif_title')}
+				/>
+				<div class="mt-2 text-sm text-gray-500">
+					{$_('settings.image.gif_cur_value')}
+					{$gifColorsValue}
+				</div>
+			</div>
+		</div>
+		<div class="grid grid-cols-2 items-center gap-4 border-b border-gray-100 py-4">
+			<div>
+				<p class="text-sm font-medium text-gray-900">{$_('settings.image.tiff_title')}</p>
+				<p class="text-sm text-gray-500">{$_('settings.image.tiff_desc')}</p>
+			</div>
+			<div style="--wails-draggable:no-drag" class="pl-5">
+				<Select
+					class="bg-white"
+					items={tiffCompressionOptions}
+					bind:value={$tiffCompressionValue}
+					aria-label={$_('settings.image.tiff_title')}
+				/>
+			</div>
+		</div>
+		<div class="grid grid-cols-2 items-center gap-4 border-b border-gray-100 py-4">
+			<div>
+				<p class="text-sm font-medium text-gray-900">{$_('settings.image.png_title')}</p>
+				<p class="text-sm text-gray-500">{$_('settings.image.png_desc')}</p>
+			</div>
+			<div style="--wails-draggable:no-drag" class="pl-5">
+				<Select
+					class="bg-white"
+					items={pngCompressionOptions}
+					bind:value={$pngCompressionValue}
+					aria-label={$_('settings.image.png_title')}
+				/>
+			</div>
+		</div>
+		<div class="grid grid-cols-2 items-center gap-4 py-4">
+			<div>
+				<p class="text-sm font-medium text-gray-900">
+					{$_('settings.image.exif_orientation_title')}
+				</p>
+				<p class="text-sm text-gray-500">{$_('settings.image.exif_orientation_desc')}</p>
+			</div>
+			<div class="pl-5">
+				<Toggle bind:checked={$autoExifOrientation}
+					>{$_('settings.image.exif_auto_orientation')}</Toggle
+				>
+			</div>
+		</div>
 	</div>
-	<div style="--wails-draggable:no-drag" class="pl-5">
-		<Range
-			min="1"
-			max="100"
-			bind:value={$jpegQualityValue}
-			aria-label={$_('settings.image.jpg_title')}
-		/>
-		<div class="pt-5">{$_('settings.image.jpg_cur_value')} {$jpegQualityValue}</div>
-	</div>
-</div>
-<div class="grid grid-cols-2 border-b-2 pb-5">
-	<div>
-		<p class="text-lg text-gray-500">{$_('settings.image.gif_title')}</p>
-		<p class="text-xs text-gray-500">{$_('settings.image.gif_desc')}</p>
-	</div>
-	<div style="--wails-draggable:no-drag" class="pl-5">
-		<Range
-			min="1"
-			max="256"
-			bind:value={$gifColorsValue}
-			aria-label={$_('settings.image.gif_title')}
-		/>
-		<div class="pt-5">{$_('settings.image.gif_cur_value')} {$gifColorsValue}</div>
-	</div>
-</div>
-<div class="grid grid-cols-2 border-b-2 pb-5">
-	<div>
-		<p class="text-lg text-gray-500">{$_('settings.image.tiff_title')}</p>
-		<p class="text-xs text-gray-500">{$_('settings.image.tiff_desc')}</p>
-	</div>
-	<div style="--wails-draggable:no-drag" class="pl-5">
-		<Select
-			items={tiffCompressionOptions}
-			bind:value={$tiffCompressionValue}
-			aria-label={$_('settings.image.tiff_title')}
-		/>
-	</div>
-</div>
-<div class="grid grid-cols-2 border-b-2 pb-5">
-	<div>
-		<p class="text-lg text-gray-500">{$_('settings.image.png_title')}</p>
-		<p class="text-xs text-gray-500">{$_('settings.image.png_desc')}</p>
-	</div>
-	<div style="--wails-draggable:no-drag" class="pl-5">
-		<Select
-			items={pngCompressionOptions}
-			bind:value={$pngCompressionValue}
-			aria-label={$_('settings.image.png_title')}
-		/>
-	</div>
-</div>
-<div class="grid grid-cols-2 pb-5">
-	<div>
-		<p class="text-lg text-gray-500">{$_('settings.image.exif_orientation_title')}</p>
-		<p class="text-xs text-gray-500">{$_('settings.image.exif_orientation_desc')}</p>
-	</div>
-	<div class="pl-5">
-		<Toggle bind:checked={$autoExifOrientation}>{$_('settings.image.exif_auto_orientation')}</Toggle
-		>
-	</div>
-</div>
+</section>

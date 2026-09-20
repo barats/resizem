@@ -16,13 +16,18 @@ See the Mulan PSL v2 for more details. -->
 	let selected = $state(getAppLocale());
 </script>
 
-<Label for="lang-select" class="text-lg font-medium">{$_('settings.language.title')}</Label>
-<div style="--wails-draggable:no-drag" class="pt-5">
-	<Select
-		id="lang-select"
-		placeholder={$_('home.options.choose')}
-		bind:value={selected}
-		items={appLocales}
-		onchange={() => setAppLocale(selected)}
-	></Select>
-</div>
+<section>
+	<Label for="lang-select" class="text-sm font-semibold text-gray-900"
+		>{$_('settings.language.title')}</Label
+	>
+	<div style="--wails-draggable:no-drag" class="mt-3">
+		<Select
+			id="lang-select"
+			class="bg-white"
+			placeholder={$_('home.options.choose')}
+			bind:value={selected}
+			items={appLocales}
+			onchange={() => setAppLocale(selected)}
+		></Select>
+	</div>
+</section>

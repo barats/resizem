@@ -40,6 +40,7 @@ See the Mulan PSL v2 for more details. -->
 		<Label for="format-select">{$_('home.options.format')}</Label>
 		<Select
 			id="format-select"
+			class="bg-white"
 			placeholder={$_('home.options.choose')}
 			items={allFormats}
 			bind:value={$formatValue}
@@ -47,12 +48,12 @@ See the Mulan PSL v2 for more details. -->
 	</div>
 	<div>
 		<Label for="filter-select">{$_('home.options.filter')}</Label>
-		<Select id="filter-select" items={allFilters} bind:value={$filterValue} />
+		<Select id="filter-select" class="bg-white" items={allFilters} bind:value={$filterValue} />
 	</div>
 	<div class="grid grid-cols-2 gap-5">
 		<div>
 			<Label for="width">{$_('home.options.width.title')}</Label>
-			<Input id="width" type="number" bind:value={$widthValue} />
+			<Input id="width" type="number" class="bg-white" bind:value={$widthValue} />
 			{#if showWidthHelper}
 				<Helper class="mt-2" color="red">
 					<span class="font-medium">{$_('home.options.width.helper1')}</span>
@@ -64,7 +65,7 @@ See the Mulan PSL v2 for more details. -->
 		</div>
 		<div>
 			<Label for="height">{$_('home.options.height.title')}</Label>
-			<Input id="height" type="number" bind:value={$heightValue} />
+			<Input id="height" type="number" class="bg-white" bind:value={$heightValue} />
 			{#if showHeightHelper}
 				<Helper class="mt-2" color="red">
 					<span class="font-medium">{$_('home.options.height.helper1')}</span>

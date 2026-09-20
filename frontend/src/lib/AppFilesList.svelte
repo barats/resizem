@@ -53,14 +53,14 @@ See the Mulan PSL v2 for more details. -->
 				<h2 class="mb-1 px-1 text-sm font-medium text-gray-500">
 					{$_('home.list.queue')} ({queueCount})
 				</h2>
-				<Listgroup class="w-full">
+				<Listgroup class="w-full divide-gray-100">
 					{#each $filesList as file (file)}
-						<ListgroupItem class="text-sm">
+						<ListgroupItem class="group py-2.5 text-sm font-normal text-gray-700">
 							<FileImageOutline class="h-5 w-5 shrink-0 text-gray-400" />
 							<span class="min-w-0 flex-1 truncate" title={file}>{file}</span>
 							<button
 								type="button"
-								class="shrink-0 rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 focus:ring-2 focus:ring-gray-200 focus:outline-none"
+								class="shrink-0 rounded p-1 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-100 hover:text-gray-700 focus:ring-2 focus:ring-gray-200 focus:outline-none focus-visible:opacity-100"
 								aria-label={$_('home.list.remove')}
 								title={$_('home.list.remove')}
 								onclick={() => removeQueuedFile(file)}
@@ -78,9 +78,9 @@ See the Mulan PSL v2 for more details. -->
 				<h2 class="mb-1 px-1 text-sm font-medium text-gray-500">
 					{$_('home.list.results')} ({resultCount})
 				</h2>
-				<Listgroup class="w-full">
+				<Listgroup class="w-full divide-gray-100">
 					{#each $resultList as item, i (i)}
-						<ListgroupItem class="text-sm">
+						<ListgroupItem class="py-2.5 text-sm font-normal text-gray-700">
 							{#if item.status === 1}
 								<CheckCircleOutline class="h-5 w-5 shrink-0 text-green-600" />
 								<span class="min-w-0 flex-1 truncate" title={item.name}>{item.name}</span>

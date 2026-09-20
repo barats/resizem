@@ -19,9 +19,9 @@ See the Mulan PSL v2 for more details. -->
 	let visible = $state(false);
 
 	const activeClass =
-		'flex items-center justify-center p-4 text-base font-normal text-primary-900 bg-primary-200 rounded-lg hover:bg-primary-100';
+		'flex items-center justify-center mx-2 p-4 text-base font-normal text-blue-700 bg-blue-50 rounded-lg hover:bg-blue-100';
 	const nonActiveClass =
-		'flex items-center justify-center p-4 text-base font-normal text-primary-900 rounded-lg hover:bg-primary-100';
+		'flex items-center justify-center mx-2 p-4 text-base font-normal text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-900';
 
 	const GithubHomePage = () => {
 		BrowserOpenURL('https://github.com/barats/resizem');
@@ -36,7 +36,7 @@ See the Mulan PSL v2 for more details. -->
 	disableBreakpoints
 	class="relative z-20 flex h-full w-20 flex-shrink-0 flex-col"
 	classes={{
-		div: 'h-full border-r-2 border-gray-200 bg-white px-0 py-0',
+		div: 'h-full border-r border-gray-100 bg-white px-0 py-0',
 		active: activeClass,
 		nonactive: nonActiveClass
 	}}
@@ -44,9 +44,7 @@ See the Mulan PSL v2 for more details. -->
 	<SidebarGroup>
 		<SidebarItem href="/" spanClass="hidden" aria-label={$_('nav.home')} title={$_('nav.home')}>
 			{#snippet icon()}
-				<ImageSolid
-					class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
-				/>
+				<ImageSolid class="h-5 w-5 transition duration-75" />
 			{/snippet}
 		</SidebarItem>
 		<SidebarItem
@@ -56,9 +54,7 @@ See the Mulan PSL v2 for more details. -->
 			title={$_('nav.settings')}
 		>
 			{#snippet icon()}
-				<CogOutline
-					class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
-				/>
+				<CogOutline class="h-5 w-5 transition duration-75" />
 			{/snippet}
 		</SidebarItem>
 	</SidebarGroup>

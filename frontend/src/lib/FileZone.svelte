@@ -32,7 +32,12 @@ See the Mulan PSL v2 for more details. -->
 	>
 		{$_('home.dropzone.upload')}
 	</button>
-	<Dropzone class={$doing ? 'pointer-events-none opacity-60' : ''} onclick={openDialog}>
+	<Dropzone
+		class="{$doing ? 'pointer-events-none opacity-60' : ''} {$filesList.length > 0
+			? 'h-32'
+			: 'h-52'} rounded-xl hover:border-blue-400 hover:bg-blue-50/50"
+		onclick={openDialog}
+	>
 		<svg
 			aria-hidden="true"
 			class="mb-3 h-10 w-10 text-gray-400"

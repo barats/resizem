@@ -31,18 +31,24 @@ See the Mulan PSL v2 for more details. -->
 </script>
 
 {#if $doing}
-	<Button size="xl" shadow color="blue" disabled loading>
+	<Button size="lg" color="blue" class="bg-blue-600" disabled loading>
 		{$_('home.buttons.doing')}
 	</Button>
-	<Button size="xl" shadow color="red" onclick={handleCancel}>
+	<Button size="lg" color="red" onclick={handleCancel}>
 		{$_('home.buttons.cancel')}
 	</Button>
 {:else}
-	<Button size="xl" shadow color="blue" disabled={$filesList.length === 0} onclick={handleStart}>
+	<Button
+		size="lg"
+		color="blue"
+		class="bg-blue-600 hover:bg-blue-700"
+		disabled={$filesList.length === 0}
+		onclick={handleStart}
+	>
 		{$_('home.buttons.start')}
 	</Button>
 	<Button
-		size="xl"
+		size="lg"
 		color="light"
 		disabled={$filesList.length === 0 && $resultList.length === 0}
 		onclick={handleClear}

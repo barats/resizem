@@ -39,11 +39,11 @@ See the Mulan PSL v2 for more details. -->
 	</div>
 	<div
 		bind:this={scrollableDiv}
-		class="min-h-0 flex-1 overflow-y-auto rounded-lg border border-gray-200 bg-white"
+		class="min-h-0 flex-1 overflow-y-auto rounded-xl border border-gray-100 bg-white"
 	>
 		<AppFilesList />
 	</div>
-	<div class="flex shrink-0 items-center justify-center gap-5">
+	<div class="flex shrink-0 items-center justify-end gap-3">
 		<AppButtons />
 	</div>
 </main>
