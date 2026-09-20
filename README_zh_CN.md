@@ -4,11 +4,6 @@
 
 ![Screenshot](screenshot.png)
 
-<p align="center">
-<a target="_blank" href="https://github.com/barats/resizem/stargazers"><img src="https://img.shields.io/github/stars/barats/resizem"/></a> 
-&nbsp;&nbsp;&nbsp;
-<a target="_blank" href="https://gitee.com/barat/resizem/stargazers"><img src="https://gitee.com/barat/resizem/badge/star.svg?theme=dark"/></a>
-</p>
 
 ## 主要功能
 
