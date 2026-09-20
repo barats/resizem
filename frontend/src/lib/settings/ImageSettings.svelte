@@ -19,7 +19,7 @@ See the Mulan PSL v2 for more details. -->
 	import { Label, Range, Select, Toggle } from 'flowbite-svelte';
 	import { _ } from 'svelte-i18n';
 
-	let jpgCompressionOptions = [
+	let tiffCompressionOptions = [
 		{ name: 'Uncompressed', value: 0 },
 		{ name: 'Deflate', value: 1 },
 		{ name: 'LZW', value: 2 },
@@ -35,14 +35,19 @@ See the Mulan PSL v2 for more details. -->
 	];
 </script>
 
-<Label defaultClass="text-lg font-medium" for="lang-select">{$_('settings.image.title')}</Label>
+<Label defaultClass="text-lg font-medium">{$_('settings.image.title')}</Label>
 <div class="grid grid-cols-2 border-b-2 pb-5">
 	<div>
 		<p class="text-lg text-gray-500">{$_('settings.image.jpg_title')}</p>
 		<p class="text-xs text-gray-500">{$_('settings.image.jpg_desc')}</p>
 	</div>
 	<div style="--wails-draggable:no-drag" class="pl-5">
-		<Range min="1" max="100" bind:value={$jpegQualityValue} />
+		<Range
+			min="1"
+			max="100"
+			bind:value={$jpegQualityValue}
+			aria-label={$_('settings.image.jpg_title')}
+		/>
 		<div class="pt-5">{$_('settings.image.jpg_cur_value')} {$jpegQualityValue}</div>
 	</div>
 </div>
@@ -52,7 +57,12 @@ See the Mulan PSL v2 for more details. -->
 		<p class="text-xs text-gray-500">{$_('settings.image.gif_desc')}</p>
 	</div>
 	<div style="--wails-draggable:no-drag" class="pl-5">
-		<Range min="1" max="256" bind:value={$gifColorsValue} />
+		<Range
+			min="1"
+			max="256"
+			bind:value={$gifColorsValue}
+			aria-label={$_('settings.image.gif_title')}
+		/>
 		<div class="pt-5">{$_('settings.image.gif_cur_value')} {$gifColorsValue}</div>
 	</div>
 </div>
@@ -62,7 +72,11 @@ See the Mulan PSL v2 for more details. -->
 		<p class="text-xs text-gray-500">{$_('settings.image.tiff_desc')}</p>
 	</div>
 	<div style="--wails-draggable:no-drag" class="pl-5">
-		<Select items={jpgCompressionOptions} bind:value={$tiffCompressionValue} />
+		<Select
+			items={tiffCompressionOptions}
+			bind:value={$tiffCompressionValue}
+			aria-label={$_('settings.image.tiff_title')}
+		/>
 	</div>
 </div>
 <div class="grid grid-cols-2 border-b-2 pb-5">
@@ -71,7 +85,11 @@ See the Mulan PSL v2 for more details. -->
 		<p class="text-xs text-gray-500">{$_('settings.image.png_desc')}</p>
 	</div>
 	<div style="--wails-draggable:no-drag" class="pl-5">
-		<Select items={pngCompressionOptions} bind:value={$pngCompressionValue} />
+		<Select
+			items={pngCompressionOptions}
+			bind:value={$pngCompressionValue}
+			aria-label={$_('settings.image.png_title')}
+		/>
 	</div>
 </div>
 <div class="grid grid-cols-2 pb-5">
@@ -80,7 +98,7 @@ See the Mulan PSL v2 for more details. -->
 		<p class="text-xs text-gray-500">{$_('settings.image.exif_orientation_desc')}</p>
 	</div>
 	<div class="pl-5">
-		<Toggle bind:checked={$autoExifOrientation}>{$_('settings.image.exit_auto_orientation')}</Toggle
+		<Toggle bind:checked={$autoExifOrientation}>{$_('settings.image.exif_auto_orientation')}</Toggle
 		>
 	</div>
 </div>

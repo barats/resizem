@@ -12,14 +12,12 @@ See the Mulan PSL v2 for more details. -->
 	import { Button, Spinner } from 'flowbite-svelte';
 	import { EventsEmit } from './wailsjs/runtime/runtime';
 	import { EVENT_CANCEL, EVENT_CLEAR_HISTORY, EVENT_START } from './app_consts';
-	import { doing } from './app_stores';
+	import { doing, filesList, resultList } from './app_stores';
 	import { _ } from 'svelte-i18n';
 	import { CancelHandleFiles } from './wailsjs/go/rmanager/FileManager';
 
 	const handleCancel = () => {
-		CancelHandleFiles().then(() => {
-			console.log('remote call CancelHandleFiles() done');
-		});
+		CancelHandleFiles().then(() => {});
 		EventsEmit(EVENT_CANCEL);
 	};
 
@@ -38,6 +36,17 @@ See the Mulan PSL v2 for more details. -->
 	</Button>
 	<Button size="xl" shadow color="red" on:click={handleCancel}>{$_('home.buttons.cancel')}</Button>
 {:else}
-	<Button size="xl" shadow color="blue" on:click={handleStart}>{$_('home.buttons.start')}</Button>
-	<Button size="xl" shadow color="red" on:click={handleClear}>{$_('home.buttons.clear')}</Button>
+	<Button
+		size="xl"
+		shadow
+		color="blue"
+		disabled={$filesList.length === 0}
+		on:click={handleStart}>{$_('home.buttons.start')}</Button
+	>
+	<Button
+		size="xl"
+		color="light"
+		disabled={$filesList.length === 0 && $resultList.length === 0}
+		on:click={handleClear}>{$_('home.buttons.clear')}</Button
+	>
 {/if}

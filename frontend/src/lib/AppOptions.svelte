@@ -25,22 +25,21 @@ See the Mulan PSL v2 for more details. -->
 			var keep = { name: $_('home.options.keep'), value: 0 };
 			data.push(keep);
 			allFormats = data;
-			console.log('remote call OutputImagesTypes() done');
 		});
 
 		ResampleFilterTypes().then((data) => {
 			allFilters = data;
-			console.log('remote call ResampleFilterTypes() done');
 		});
 	});
 
-	$: if ($widthValue < 0 || $widthValue === null) {
+	// null means the field is empty ("not set"), which is valid; only negatives are invalid.
+	$: if ($widthValue < 0) {
 		showWidthHelper = true;
 	} else {
 		showWidthHelper = false;
 	}
 
-	$: if ($heightValue < 0 || $heightValue === null) {
+	$: if ($heightValue < 0) {
 		showHeightHelper = true;
 	} else {
 		showHeightHelper = false;
@@ -62,25 +61,29 @@ See the Mulan PSL v2 for more details. -->
 		<Select id="filter-select" items={allFilters} bind:value={$filterValue} />
 	</div>
 	<div class="grid grid-cols-2 gap-5">
-		<Label
-			>{$_('home.options.width.title')}
+		<div>
+			<Label for="width">{$_('home.options.width.title')}</Label>
 			<NumberInput id="width" bind:value={$widthValue} />
 			{#if showWidthHelper}
 				<Helper class="mt-2" color="red">
 					<span class="font-medium">{$_('home.options.width.helper1')}</span>
 					{$_('home.options.width.helper2')}
 				</Helper>
+			{:else}
+				<Helper class="mt-2">{$_('home.options.size_helper')}</Helper>
 			{/if}
-		</Label>
-		<Label
-			>{$_('home.options.height.title')}
+		</div>
+		<div>
+			<Label for="height">{$_('home.options.height.title')}</Label>
 			<NumberInput id="height" bind:value={$heightValue} />
 			{#if showHeightHelper}
 				<Helper class="mt-2" color="red">
 					<span class="font-medium">{$_('home.options.height.helper1')}</span>
 					{$_('home.options.height.helper2')}
 				</Helper>
+			{:else}
+				<Helper class="mt-2">{$_('home.options.size_helper')}</Helper>
 			{/if}
-		</Label>
+		</div>
 	</div>
 </div>

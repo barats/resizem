@@ -13,6 +13,7 @@ See the Mulan PSL v2 for more details. -->
 	import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper, Button } from 'flowbite-svelte';
 	import { CogOutline, GithubSolid, ImageSolid, InfoCircleSolid } from 'flowbite-svelte-icons';
 	import { BrowserOpenURL } from '$lib/wailsjs/runtime/runtime';
+	import { _ } from 'svelte-i18n';
 	import AppAbout from './AppAbout.svelte';
 
 	let visible = false;
@@ -33,18 +34,28 @@ See the Mulan PSL v2 for more details. -->
 	{activeClass}
 	{nonActiveClass}
 	ariaLabel="sidebar"
-	asideClass="fixed top-0 left-0 pt-10 z-20 flex flex-col flex-shrink-0 w-20 h-full transition-width"
+	asideClass="relative top-0 left-0 pt-10 z-20 flex flex-col flex-shrink-0 w-20 h-full transition-width"
 >
-	<SidebarWrapper divClass="bg-white h-screen border-r-2">
+	<SidebarWrapper divClass="bg-white h-full border-r-2">
 		<SidebarGroup>
-			<SidebarItem href="/" spanClass="display:none;">
+			<SidebarItem
+				href="/"
+				spanClass="display:none;"
+				aria-label={$_('nav.home')}
+				title={$_('nav.home')}
+			>
 				<svelte:fragment slot="icon">
 					<ImageSolid
 						class="h-5 w-5  text-gray-500 transition duration-75  group-hover:text-gray-900"
 					/>
 				</svelte:fragment>
 			</SidebarItem>
-			<SidebarItem href="/settings/" spanClass="display:none;">
+			<SidebarItem
+				href="/settings/"
+				spanClass="display:none;"
+				aria-label={$_('nav.settings')}
+				title={$_('nav.settings')}
+			>
 				<svelte:fragment slot="icon">
 					<CogOutline
 						class="h-5 w-5 text-gray-500 transition duration-75  group-hover:text-gray-900"
@@ -57,13 +68,22 @@ See the Mulan PSL v2 for more details. -->
 			<div
 				class="absolute bottom-5 flex w-full flex-col flex-wrap items-center justify-center gap-1"
 			>
-				<Button color="light" size="xs" class="w-11/12 border-0 !p-2" on:click={GithubHomePage}>
+				<Button
+					color="light"
+					size="xs"
+					class="w-11/12 border-0 !p-2"
+					aria-label={$_('nav.github')}
+					title={$_('nav.github')}
+					on:click={GithubHomePage}
+				>
 					<GithubSolid class="h-5 w-5" />
 				</Button>
 				<Button
 					color="light"
 					size="xs"
 					class="w-11/12 border-0 !p-2"
+					aria-label={$_('nav.about')}
+					title={$_('nav.about')}
 					on:click={() => {
 						visible = true;
 					}}

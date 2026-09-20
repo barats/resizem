@@ -15,7 +15,7 @@ See the Mulan PSL v2 for more details. -->
 	import PathSettings from '$lib/settings/PathSettings.svelte';
 </script>
 
-<main class="flex h-screen flex-col gap-5 overflow-y-scroll">
+<main class="flex h-full min-h-0 w-full flex-col gap-5 overflow-y-auto">
 	<div class="grid grid-cols-2 gap-5">
 		<div class="rounded-lg border-2 border-dashed border-gray-300 bg-white p-5">
 			<LangSelect />

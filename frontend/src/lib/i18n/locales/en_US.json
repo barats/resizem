@@ -1,15 +1,33 @@
 {
+	"nav": {
+		"home": "Home",
+		"settings": "Settings",
+		"github": "GitHub repository",
+		"about": "About Resizem"
+	},
 	"home": {
 		"dropzone": {
 			"message": "<span class='font-semibold'>Click to Upload</span>",
+			"doing": "Converting, please wait...",
 			"types": "BMP, PNG, JPG, JPEG, TIF, TIFF, WebP or GIF",
 			"files_selected": "{count} file(s) selected"
+		},
+		"list": {
+			"queue": "Queue",
+			"results": "Results",
+			"remove": "Remove",
+			"empty": "Files you add will appear here. Click above or drop images to begin."
+		},
+		"errors": {
+			"unknown_format": "Unsupported or corrupted image format",
+			"unexpected_eof": "File is incomplete or corrupted"
 		},
 		"options": {
 			"choose": "Choose options",
 			"keep": "Keep Original Format",
 			"format": "Format",
 			"filter": "Filter",
+			"size_helper": "Leave empty or 0 to keep original size",
 			"width": {
 				"title": "Width",
 				"helper1": "Numbers only.",
@@ -58,7 +76,7 @@
 			"png_desc": "Default Compression, No Compression, Best Speed, Best Compression",
 			"tiff_title": "TIFF Compression",
 			"tiff_desc": "Uncompressed, Deflate, LZW, CCITTGroup3, CCITTGroup4",
-			"exit_auto_orientation": "Auto Orientation",
+			"exif_auto_orientation": "Auto Orientation",
 			"exif_orientation_title": "EXIF Orientation",
 			"exif_orientation_desc": "If auto orientation is enabled, the image will be transformed after decoding according to the EXIF orientation tag (if present)."
 		}

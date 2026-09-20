@@ -34,8 +34,8 @@ export let resultList = writable(KEY_RESULT_LIST, []);
 
 export let formatValue = writable(KEY_FORMAT_VALUE, 0); //Keep original format
 export let filterValue = writable(KEY_FILTER_VALUE, 1); // Lanczos
-export let widthValue = writable(KEY_WIDTH_VALUE);
-export let heightValue = writable(KEY_HEIGHT_VALUE);
+export let widthValue = writable(KEY_WIDTH_VALUE, null);
+export let heightValue = writable(KEY_HEIGHT_VALUE, null);
 
 export let cpuUsageValue = writable(KEY_CPU_VALUE, 1);
 export let jpegQualityValue = writable(KEY_JPEG_QUALITY_VALUE, 75);

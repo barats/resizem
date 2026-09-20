@@ -14,6 +14,7 @@ See the Mulan PSL v2 for more details. -->
 	import AppSidebar from '$lib/AppSidebar.svelte';
 	import { onMount } from 'svelte';
 	import '../app.css';
+	import { Alert, CloseButton } from 'flowbite-svelte';
 	import { EventsEmit, EventsOn } from '$lib/wailsjs/runtime/runtime.js';
 	import {
 		askWheretoSave,
@@ -43,6 +44,8 @@ See the Mulan PSL v2 for more details. -->
 	import { OpenDirectoryDialog, StartHandleFiles } from '$lib/wailsjs/go/rmanager/FileManager';
 
 	let destPath;
+	let err_msg = '';
+	let showAlert = false;
 
 	onMount(() => {
 		EventsOn(EVENT_BACKEND_ERROR, (message) => {
@@ -59,10 +62,6 @@ See the Mulan PSL v2 for more details. -->
 		EventsOn(EVENT_CLEAR_HISTORY, () => {
 			$filesList = [];
 			$resultList = [];
-			$formatValue = 0;
-			$filterValue = 1;
-			$widthValue = 0;
-			$heightValue = 0;
 		});
 
 		//On Start
@@ -76,7 +75,6 @@ See the Mulan PSL v2 for more details. -->
 					if (path != '' && path != null) {
 						destPath = path;
 					}
-					console.log('remote call OpenDirectoryDialog() done');
 					startJobs();
 				});
 			} else {
@@ -113,9 +111,7 @@ See the Mulan PSL v2 for more details. -->
 		$doing = true;
 		$filesList = [];
 		StartHandleFiles(allFiles, opts)
-			.then(() => {
-				console.log('remote call StartHandleFiles() done');
-			})
+			.then(() => {})
 			.finally(() => {
 				$doing = false;
 			});
@@ -138,9 +134,17 @@ See the Mulan PSL v2 for more details. -->
 	}
 </script>
 
-<div id="main-content" class="flex overflow-hidden pl-5 pr-5 pt-8">
+<div id="main-content" class="flex h-screen overflow-hidden">
 	<AppSidebar />
-	<div id="right-content" class="fixed h-full w-full overflow-hidden pl-20 pr-10">
+	<div id="right-content" class="flex min-w-0 flex-1 flex-col pb-6 pr-10 pt-8 pl-5">
+		{#if showAlert}
+			<Alert color="red" class="mb-4 shrink-0">
+				<div class="flex items-start justify-between gap-3">
+					<span>{err_msg}</span>
+					<CloseButton class="-me-1 -my-1" on:click={() => (showAlert = false)} />
+				</div>
+			</Alert>
+		{/if}
 		<slot />
 	</div>
 </div>

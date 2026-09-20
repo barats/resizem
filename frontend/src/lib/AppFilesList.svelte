@@ -10,28 +10,84 @@ See the Mulan PSL v2 for more details. -->
 
 <script>
 	import { Listgroup, ListgroupItem } from 'flowbite-svelte';
+	import { FileImageOutline, CheckCircleOutline, CloseCircleOutline, CloseOutline } from 'flowbite-svelte-icons';
 	import { filesList, resultList } from '$lib/app_stores';
-	import { FileImageOutline, CheckCircleOutline, CloseCircleOutline } from 'flowbite-svelte-icons';
+	import { _ } from 'svelte-i18n';
+
+	$: queueCount = $filesList.length;
+	$: resultCount = $resultList.length;
+	$: isEmpty = queueCount === 0 && resultCount === 0;
+
+	$: friendlyErrors = [
+		{ pattern: /unknown format|unsupported/i, text: $_('home.errors.unknown_format') },
+		{ pattern: /eof|truncat/i, text: $_('home.errors.unexpected_eof') }
+	];
+
+	function friendlyMessage(message) {
+		if (!message) {
+			return '';
+		}
+		const match = friendlyErrors.find((entry) => entry.pattern.test(message));
+		return match ? match.text : message;
+	}
+
+	function removeQueuedFile(path) {
+		$filesList = $filesList.filter((file) => file !== path);
+	}
 </script>
 
-<Listgroup class="w-full border-0">
-	{#if $filesList.length > 0}
-		{#each $filesList as item}
-			<ListgroupItem class="flex gap-2 text-sm">
-				<FileImageOutline color="w-5 h-5" />{item}
-			</ListgroupItem>
-		{/each}
-	{/if}
+{#if isEmpty}
+	<div class="flex h-full flex-col items-center justify-center gap-2 py-10 text-center">
+		<FileImageOutline class="h-10 w-10 text-gray-300" />
+		<p class="text-sm text-gray-400">{$_('home.list.empty')}</p>
+	</div>
+{:else}
+	<div class="flex flex-col gap-5 pb-3">
+		{#if queueCount > 0}
+			<section>
+				<h2 class="mb-1 px-1 text-sm font-medium text-gray-500">
+					{$_('home.list.queue')} ({queueCount})
+				</h2>
+				<Listgroup class="border-0">
+					{#each $filesList as file (file)}
+						<ListgroupItem class="flex items-center gap-2 text-sm">
+							<FileImageOutline class="h-5 w-5 shrink-0 text-gray-400" />
+							<span class="min-w-0 flex-1 truncate" title={file}>{file}</span>
+							<button
+								type="button"
+								class="shrink-0 rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200"
+								aria-label={$_('home.list.remove')}
+								title={$_('home.list.remove')}
+								on:click={() => removeQueuedFile(file)}
+							>
+								<CloseOutline class="h-4 w-4" />
+							</button>
+						</ListgroupItem>
+					{/each}
+				</Listgroup>
+			</section>
+		{/if}
 
-	{#if $resultList.length > 0}
-		{#each $resultList as item}
-			<ListgroupItem class="flex gap-2 text-sm">
-				{#if item.status === 1}
-					<CheckCircleOutline class="h-5 w-5" />{item.name}
-				{:else}
-					<CloseCircleOutline class="h-5 w-5" />{item.name} - {item.message}
-				{/if}
-			</ListgroupItem>
-		{/each}
-	{/if}
-</Listgroup>
+		{#if resultCount > 0}
+			<section>
+				<h2 class="mb-1 px-1 text-sm font-medium text-gray-500">
+					{$_('home.list.results')} ({resultCount})
+				</h2>
+				<Listgroup class="border-0">
+					{#each $resultList as item, i (i)}
+						<ListgroupItem class="flex items-center gap-2 text-sm">
+							{#if item.status === 1}
+								<CheckCircleOutline class="h-5 w-5 shrink-0 text-green-600" />
+								<span class="min-w-0 flex-1 truncate" title={item.name}>{item.name}</span>
+							{:else}
+								<CloseCircleOutline class="h-5 w-5 shrink-0 text-red-600" />
+								<span class="min-w-0 flex-1 truncate" title={item.name}>{item.name}</span>
+								<span class="shrink-0 text-xs text-red-600">{friendlyMessage(item.message)}</span>
+							{/if}
+						</ListgroupItem>
+					{/each}
+				</Listgroup>
+			</section>
+		{/if}
+	</div>
+{/if}

@@ -1,15 +1,33 @@
 {
+	"nav": {
+		"home": "主頁",
+		"settings": "設定",
+		"github": "GitHub 儲存庫",
+		"about": "關於 Resizem"
+	},
 	"home": {
 		"dropzone": {
 			"message": "<span class='font-semibold'>點擊上傳</span>",
+			"doing": "正在轉換，請稍候...",
 			"types": "支持圖片格式：BMP, PNG, JPG, JPEG, TIFF, WebP or GIF",
 			"files_selected": "選擇了 {count} 個文件"
+		},
+		"list": {
+			"queue": "佇列",
+			"results": "結果",
+			"remove": "移除",
+			"empty": "新增的檔案將顯示在這裡。點擊上方或拖入圖片開始。"
+		},
+		"errors": {
+			"unknown_format": "不支援的圖片格式或檔案已損壞",
+			"unexpected_eof": "檔案不完整或已損壞"
 		},
 		"options": {
 			"choose": "請選擇",
 			"keep": "保留原有格式",
 			"format": "格式",
 			"filter": "過濾器",
+			"size_helper": "留空或填 0 表示保持原始尺寸",
 			"width": {
 				"title": "寬度",
 				"helper1": "只能是數字",
@@ -58,7 +76,7 @@
 			"png_desc": "Default Compression, No Compression, Best Speed, Best Compression",
 			"tiff_title": "TIFF Compression",
 			"tiff_desc": "Uncompressed, Deflate, LZW, CCITTGroup3, CCITTGroup4",
-			"exit_auto_orientation": "Auto Orientation",
+			"exif_auto_orientation": "自動方向",
 			"exif_orientation_title": "EXIF Orientation",
 			"exif_orientation_desc": "如果啓用了自動方向功能，圖像將在解碼後根據 EXIF 方向標籤（如果存在）進行調整。"
 		}
