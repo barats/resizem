@@ -44,9 +44,9 @@ func main() {
 	err := wails.Run(&options.App{
 		Title:                            rmanager.Resizem.Name,
 		Width:                            1100,
-		Height:                           680,
-		MinWidth:                         750,
-		MinHeight:                        450,
+		Height:                           700,
+		MinWidth:                         1100,
+		MinHeight:                        700,
 		Frameless:                        false,
 		LogLevel:                         logger.DEBUG,
 		LogLevelProduction:               logger.DEBUG,

@@ -27,7 +27,7 @@
 		},
 		"options": {
 			"choose": "Choose options",
-			"keep": "Keep Original Format",
+			"keep": "Original Format",
 			"format": "Format",
 			"filter": "Filter",
 			"size_helper": "Leave empty or 0 to keep original size",

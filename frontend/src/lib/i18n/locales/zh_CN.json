@@ -27,7 +27,7 @@
 		},
 		"options": {
 			"choose": "请选择",
-			"keep": "保留原有格式",
+			"keep": "原有格式",
 			"format": "格式",
 			"filter": "过滤器",
 			"size_helper": "留空或填 0 表示保持原始尺寸",
