@@ -29,7 +29,7 @@ See the Mulan PSL v2 for more details. -->
 >
 	<span>Resizem {version}</span>
 	<span>
-		{$_('statusbar.cpu')}:
+		{$_('settings.cpu.title')}:
 		<span class="font-medium text-ink-secondary">{cpuLabel}</span>
 	</span>
 </footer>

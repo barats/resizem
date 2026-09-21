@@ -5,9 +5,6 @@
 		"github": "GitHub 儲存庫",
 		"about": "關於 Resizem"
 	},
-	"statusbar": {
-		"cpu": "CPU 及內存"
-	},
 	"home": {
 		"dropzone": {
 			"upload": "點擊上傳",

@@ -5,9 +5,6 @@
 		"github": "GitHub repository",
 		"about": "About Resizem"
 	},
-	"statusbar": {
-		"cpu": "CPU & Memory"
-	},
 	"home": {
 		"dropzone": {
 			"upload": "Click to Upload",
