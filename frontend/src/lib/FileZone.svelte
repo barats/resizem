@@ -9,65 +9,45 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. -->
 
 <script>
-	import { Dropzone } from 'flowbite-svelte';
+	import { CloudUpload } from '@lucide/svelte';
 	import { _ } from 'svelte-i18n';
 	import { doing, filesList } from '$lib/app_stores';
 	import { OpenFilesDialog } from '$lib/wailsjs/go/rmanager/FileManager';
 
-	// The Dropzone forwards click to its hidden file input; preventing the
-	// default there stops the webview's own picker so Wails can open ours.
-	function openDialog(event) {
-		event.preventDefault();
+	function openDialog() {
 		if (!$doing) {
 			OpenFilesDialog().then(() => {});
 		}
 	}
 </script>
 
-<div style="--wails-drop-target:drop">
+<!-- The wrapper marks this region as the Wails file-drop target. -->
+<div style="--wails-drop-target:drop" class="h-full">
+	<!-- A real button: keyboard users get visible focus and Enter/Space
+		activation instead of the old sr-only fallback link. -->
 	<button
 		type="button"
-		class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-24 focus:z-30 focus:m-2 focus:rounded-lg focus:border focus:border-primary-600 focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-700"
+		disabled={$doing}
+		class="flex h-full w-full flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-line bg-surface px-6 text-center transition-colors hover:border-primary-400 hover:bg-primary-50/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:pointer-events-none disabled:opacity-60"
 		onclick={openDialog}
 	>
-		{$_('home.dropzone.upload')}
-	</button>
-	<Dropzone
-		class="{$doing ? 'pointer-events-none opacity-60' : ''} {$filesList.length > 0
-			? 'h-32'
-			: 'h-52'} rounded-xl hover:border-blue-400 hover:bg-blue-50/50"
-		onclick={openDialog}
-	>
-		<svg
-			aria-hidden="true"
-			class="mb-3 h-10 w-10 text-gray-400"
-			fill="none"
-			stroke="currentColor"
-			viewBox="0 0 24 24"
-			xmlns="http://www.w3.org/2000/svg"
-			><path
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				stroke-width="2"
-				d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-			/></svg
-		>
+		<CloudUpload class="mb-1 h-10 w-10 text-ink-muted" strokeWidth={1.5} />
 		{#if $doing}
-			<p class="mb-2 text-lg text-gray-500">
+			<p class="text-sm font-medium text-ink-secondary">
 				{$_('home.dropzone.doing')}
 			</p>
 		{:else}
-			<p class="mb-2 text-lg font-semibold text-gray-500">
+			<p class="text-base font-semibold text-ink">
 				{$_('home.dropzone.upload')}
 			</p>
 		{/if}
-		<p class="mb-2 text-xs text-gray-500">
+		<p class="text-xs text-ink-muted">
 			{$_('home.dropzone.types')}
 		</p>
 		{#if $filesList.length > 0}
-			<p>
+			<p class="text-xs text-ink-secondary">
 				{$_('home.dropzone.files_selected', { values: { count: $filesList.length } })}
 			</p>
 		{/if}
-	</Dropzone>
+	</button>
 </div>

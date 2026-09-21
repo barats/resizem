@@ -12,13 +12,11 @@ See the Mulan PSL v2 for more details. -->
 	import AppFilesList from '$lib/AppFilesList.svelte';
 	import AppOptions from '$lib/AppOptions.svelte';
 	import FileZone from '$lib/FileZone.svelte';
-	import { filesList, resultList } from '$lib/app_stores';
-	import AppButtons from '$lib/AppButtons.svelte';
 
 	let scrollableDiv = $state();
 
 	$effect(() => {
-		if (scrollableDiv && ($filesList.length > 0 || $resultList.length > 0)) {
+		if (scrollableDiv) {
 			scrollToBottom(scrollableDiv);
 		}
 	});
@@ -28,22 +26,15 @@ See the Mulan PSL v2 for more details. -->
 	}
 </script>
 
-<main class="flex h-full min-h-0 w-full flex-col gap-5">
-	<div class="grid h-max shrink-0 grid-cols-3 gap-5">
-		<div class="col-span-2">
-			<FileZone />
-		</div>
-		<div>
-			<AppOptions />
-		</div>
+<main class="flex h-full min-h-0 w-full flex-col gap-4">
+	<!-- Row 1: dropzone and options at 2:1. The options card sizes the row
+		and the dropzone stretches to match it. -->
+	<div class="grid shrink-0 grid-cols-[2fr_1fr] gap-4">
+		<FileZone />
+		<AppOptions />
 	</div>
-	<div
-		bind:this={scrollableDiv}
-		class="min-h-0 flex-1 overflow-y-auto rounded-xl border border-gray-100 bg-white"
-	>
+	<!-- Row 2: queue and results -->
+	<div bind:this={scrollableDiv} class="min-h-24 flex-1 overflow-y-auto">
 		<AppFilesList />
-	</div>
-	<div class="flex shrink-0 items-center justify-end gap-3">
-		<AppButtons />
 	</div>
 </main>

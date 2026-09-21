@@ -9,15 +9,13 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. -->
 
 <script>
-	import Toggle from '$lib/ui/Toggle.svelte';
-	import { askWheretoSave } from '$lib/app_stores';
-	import { _ } from 'svelte-i18n';
+	let { id = undefined, type = 'text', class: klass = '', value = $bindable(), ...rest } = $props();
 </script>
 
-<section>
-	<h2 class="text-sm font-semibold text-ink">{$_('settings.path.title')}</h2>
-	<div class="mt-3 flex items-center justify-between gap-4">
-		<p class="text-sm text-ink-secondary">{$_('settings.path.ask_me_desc')}</p>
-		<Toggle bind:checked={$askWheretoSave}>{$_('settings.path.ask_me')}</Toggle>
-	</div>
-</section>
+<input
+	{id}
+	{type}
+	bind:value
+	class="h-9 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink transition-colors placeholder:text-ink-muted focus:border-primary-500 focus:ring-2 focus:ring-primary-500/25 focus:outline-none {klass}"
+	{...rest}
+/>

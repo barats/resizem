@@ -5,6 +5,9 @@
 		"github": "GitHub repository",
 		"about": "About Resizem"
 	},
+	"statusbar": {
+		"cpu": "CPU & Memory"
+	},
 	"home": {
 		"dropzone": {
 			"upload": "Click to Upload",
@@ -16,6 +19,9 @@
 			"queue": "Queue",
 			"results": "Results",
 			"remove": "Remove",
+			"clear_queue": "Clear queue",
+			"clear_results": "Clear results",
+			"converting": "Converting... {count} done",
 			"empty": "Files you add will appear here. Click above or drop images to begin."
 		},
 		"errors": {

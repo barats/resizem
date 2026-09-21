@@ -66,7 +66,7 @@ See the Mulan PSL v2 for more details.
 ## Give Thanks To 
 
 1. [Wails.io](https://wails.io) - Amazing project that could build cross-platform applications using Go
-1. [Flowbite Svelte](https://flowbite-svelte.com) - Official Flowbite component library for Svelte
+1. [Lucide](https://lucide.dev) - Beautiful & consistent icon toolkit
 1. [TailwindCSS](https://tailwindcss.com) - A utility-first CSS framework that can be composed to build any design, directly in markup
 1. [disintegration/imaging](https://github.com/disintegration/imaging) - Amazing yet simple image processing package for Go 
 

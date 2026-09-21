@@ -5,6 +5,9 @@
 		"github": "GitHub 仓库",
 		"about": "关于 Resizem"
 	},
+	"statusbar": {
+		"cpu": "CPU 及内存"
+	},
 	"home": {
 		"dropzone": {
 			"upload": "点击上传",
@@ -16,6 +19,9 @@
 			"queue": "队列",
 			"results": "结果",
 			"remove": "移除",
+			"clear_queue": "清空队列",
+			"clear_results": "清空结果",
+			"converting": "正在转换... 已完成 {count} 项",
 			"empty": "添加的文件将显示在这里。点击上方或拖入图片开始。"
 		},
 		"errors": {

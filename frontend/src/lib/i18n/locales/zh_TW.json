@@ -5,6 +5,9 @@
 		"github": "GitHub 儲存庫",
 		"about": "關於 Resizem"
 	},
+	"statusbar": {
+		"cpu": "CPU 及內存"
+	},
 	"home": {
 		"dropzone": {
 			"upload": "點擊上傳",
@@ -16,6 +19,9 @@
 			"queue": "佇列",
 			"results": "結果",
 			"remove": "移除",
+			"clear_queue": "清空佇列",
+			"clear_results": "清空結果",
+			"converting": "正在轉換... 已完成 {count} 項",
 			"empty": "新增的檔案將顯示在這裡。點擊上方或拖入圖片開始。"
 		},
 		"errors": {

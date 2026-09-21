@@ -15,9 +15,19 @@ See the Mulan PSL v2 for more details. -->
 	import PathSettings from '$lib/settings/PathSettings.svelte';
 </script>
 
-<main class="flex h-full min-h-0 w-full flex-col gap-8 overflow-y-auto">
-	<LangSelect />
-	<PathSettings />
-	<CpuSettings />
-	<ImageSettings />
+<main class="flex h-full min-h-0 w-full flex-col gap-4 overflow-y-auto pb-1">
+	<div class="grid shrink-0 grid-cols-2 gap-4">
+		<div class="rounded-xl border border-line bg-surface p-5">
+			<LangSelect />
+		</div>
+		<div class="rounded-xl border border-line bg-surface p-5">
+			<PathSettings />
+		</div>
+	</div>
+	<div class="shrink-0 rounded-xl border border-line bg-surface p-5">
+		<CpuSettings />
+	</div>
+	<div class="shrink-0 rounded-xl border border-line bg-surface p-5">
+		<ImageSettings />
+	</div>
 </main>

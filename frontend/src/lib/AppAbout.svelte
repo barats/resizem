@@ -9,7 +9,8 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details. -->
 
 <script>
-	import { Button, Modal } from 'flowbite-svelte';
+	import Button from '$lib/ui/Button.svelte';
+	import Modal from '$lib/ui/Modal.svelte';
 	import { _, json } from 'svelte-i18n';
 
 	let { visible = $bindable(false) } = $props();
@@ -23,8 +24,6 @@ See the Mulan PSL v2 for more details. -->
 		{@html item}
 	{/each}
 	{#snippet footer()}
-		<div class="w-full text-right">
-			<Button onclick={() => (visible = false)}>{$_('about.okay_btn')}</Button>
-		</div>
+		<Button variant="primary" onclick={() => (visible = false)}>{$_('about.okay_btn')}</Button>
 	{/snippet}
 </Modal>

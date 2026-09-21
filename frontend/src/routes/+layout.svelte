@@ -11,10 +11,11 @@ See the Mulan PSL v2 for more details. -->
 <script>
 	// @ts-nocheck
 
-	import AppSidebar from '$lib/AppSidebar.svelte';
+	import AppToolbar from '$lib/AppToolbar.svelte';
+	import AppStatusBar from '$lib/AppStatusBar.svelte';
 	import { onMount } from 'svelte';
 	import '../app.css';
-	import { Alert } from 'flowbite-svelte';
+	import { X } from '@lucide/svelte';
 	import { EventsEmit, EventsOn } from '$lib/wailsjs/runtime/runtime.js';
 	import {
 		askWheretoSave,
@@ -136,12 +137,26 @@ See the Mulan PSL v2 for more details. -->
 	}
 </script>
 
-<div id="main-content" class="flex h-screen overflow-hidden">
-	<AppSidebar />
-	<div id="right-content" class="flex min-w-0 flex-1 flex-col pt-8 pr-10 pb-6 pl-5">
-		<Alert color="red" dismissable bind:alertStatus={showAlert} class="mb-4 shrink-0">
-			{err_msg}
-		</Alert>
+<div class="flex h-dvh flex-col overflow-hidden">
+	<AppToolbar />
+	<div class="flex min-h-0 flex-1 flex-col overflow-y-auto px-5 py-4">
+		{#if showAlert}
+			<div
+				role="alert"
+				class="mb-4 flex shrink-0 items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
+			>
+				<p class="flex-1 break-all">{err_msg}</p>
+				<button
+					type="button"
+					class="shrink-0 rounded-md p-1 text-red-500 transition-colors hover:bg-red-100 hover:text-red-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+					aria-label="Close"
+					onclick={() => (showAlert = false)}
+				>
+					<X class="h-4 w-4" />
+				</button>
+			</div>
+		{/if}
 		{@render children()}
 	</div>
+	<AppStatusBar />
 </div>

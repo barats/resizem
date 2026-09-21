@@ -67,7 +67,7 @@ See the Mulan PSL v2 for more details.
 ## 特别鸣谢
 
 1. [Wails.io](https://wails.io) 
-1. [Flowbite Svelte](https://flowbite-svelte.com)
+1. [Lucide](https://lucide.dev)
 1. [TailwindCSS](https://tailwindcss.com)
 1. [disintegration/imaging](https://github.com/disintegration/imaging)
 
