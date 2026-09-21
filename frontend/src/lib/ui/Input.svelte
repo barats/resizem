@@ -16,6 +16,6 @@ See the Mulan PSL v2 for more details. -->
 	{id}
 	{type}
 	bind:value
-	class="h-9 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink transition-colors placeholder:text-ink-muted focus:border-primary-500 focus:ring-2 focus:ring-primary-500/25 focus:outline-none {klass}"
+	class="h-9 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink transition-colors placeholder:text-ink-muted hover:border-line-strong focus:border-primary-500 focus:ring-2 focus:ring-primary-500/25 focus:outline-none {klass}"
 	{...rest}
 />

@@ -89,7 +89,7 @@ See the Mulan PSL v2 for more details. -->
 				<ul class="divide-y divide-line rounded-xl border border-line bg-surface">
 					{#each $filesList as file (file)}
 						<li
-							class="group flex items-center gap-3 px-3 py-2 text-sm font-normal text-ink transition-colors hover:bg-surface-muted"
+							class="group flex cursor-pointer items-center gap-3 px-3 py-2 text-sm font-normal text-ink transition-colors hover:bg-surface-muted"
 						>
 							<FileImage class="h-4.5 w-4.5 shrink-0 text-ink-muted" />
 							<span class="min-w-0 flex-1 truncate" title={file}>{file}</span>
@@ -134,7 +134,7 @@ See the Mulan PSL v2 for more details. -->
 				<ul class="divide-y divide-line rounded-xl border border-line bg-surface">
 					{#each $resultList as item, i (i)}
 						<li
-							class="flex items-center gap-3 px-3 py-2 text-sm font-normal text-ink transition-colors hover:bg-surface-muted"
+							class="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm font-normal text-ink transition-colors hover:bg-surface-muted"
 						>
 							{#if item.status === 1}
 								<CircleCheck class="h-4.5 w-4.5 shrink-0 text-green-600" />

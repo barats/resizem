@@ -29,9 +29,21 @@ See the Mulan PSL v2 for more details. */
 	--color-surface: #ffffff;
 	--color-surface-muted: #f4f4f5; /* zinc-100 */
 	--color-line: #e4e4e7; /* zinc-200 */
+	--color-line-strong: #a1a1aa; /* zinc-400 */
 	--color-ink: #27272a; /* zinc-800 */
 	--color-ink-secondary: #52525b; /* zinc-600 */
 	--color-ink-muted: #71717a; /* zinc-500 */
+}
+
+/*
+ * Native <button> and <select> render with the arrow cursor in the
+ * WebView2/WKWebView engines; point at everything clickable instead.
+ * Disabled controls keep the default cursor.
+ */
+button:not(:disabled),
+select:not(:disabled),
+a {
+	cursor: pointer;
 }
 
 body {

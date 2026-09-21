@@ -36,7 +36,7 @@ See the Mulan PSL v2 for more details. -->
 		bind:this={selectEl}
 		{id}
 		bind:value
-		class="h-9 w-full appearance-none rounded-lg border border-line bg-surface pr-9 pl-3 text-sm text-ink transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500/25 focus:outline-none {klass}"
+		class="h-9 w-full appearance-none rounded-lg border border-line bg-surface pr-9 pl-3 text-sm text-ink transition-colors hover:border-line-strong focus:border-primary-500 focus:ring-2 focus:ring-primary-500/25 focus:outline-none {klass}"
 		{...rest}
 	>
 		{#if placeholder}
