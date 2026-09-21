@@ -26,15 +26,19 @@ See the Mulan PSL v2 for more details. -->
 	}
 </script>
 
-<main class="flex h-full min-h-0 w-full flex-col gap-4">
-	<!-- Row 1: dropzone and options at 2:1. The options card sizes the row
-		and the dropzone stretches to match it. -->
-	<div class="grid shrink-0 grid-cols-[2fr_1fr] gap-4">
+<!-- Two rows at 1:2. Row 1 (dropzone + options at 2:1) floors at its
+	content height when the window is short; the ratio holds whenever
+	the options card fits in the 1fr share. -->
+<main class="grid h-full min-h-0 w-full grid-rows-[1fr_2fr] gap-4">
+	<div class="grid grid-cols-[2fr_1fr] gap-4">
 		<FileZone />
 		<AppOptions />
 	</div>
-	<!-- Row 2: queue and results -->
-	<div bind:this={scrollableDiv} class="min-h-24 flex-1 overflow-y-auto">
+	<!-- Row 2: one dashed collection panel holding queue and results -->
+	<div
+		bind:this={scrollableDiv}
+		class="overflow-y-auto rounded-xl border border-dashed border-line p-2"
+	>
 		<AppFilesList />
 	</div>
 </main>

@@ -36,25 +36,25 @@ See the Mulan PSL v2 for more details. -->
 	let showHeightHelper = $derived($heightValue < 0);
 </script>
 
-<!-- The card ends where its content ends: no full-height stretch, so the
-	dead vertical space reads as page background rather than an empty card. -->
-<div class="grid grid-cols-1 content-start gap-4 rounded-xl border border-line bg-surface p-4">
-	<div class="grid gap-1.5">
-		<label for="format-select" class="text-xs font-medium text-ink-secondary"
-			>{$_('home.options.format')}</label
-		>
-		<Select
-			id="format-select"
-			placeholder={$_('home.options.choose')}
-			items={allFormats}
-			bind:value={$formatValue}
-		/>
-	</div>
-	<div class="grid gap-1.5">
-		<label for="filter-select" class="text-xs font-medium text-ink-secondary"
-			>{$_('home.options.filter')}</label
-		>
-		<Select id="filter-select" items={allFilters} bind:value={$filterValue} />
+<div class="grid content-start gap-3 rounded-xl border border-line bg-surface p-3">
+	<div class="grid grid-cols-2 gap-3">
+		<div class="grid gap-1.5">
+			<label for="format-select" class="text-xs font-medium text-ink-secondary"
+				>{$_('home.options.format')}</label
+			>
+			<Select
+				id="format-select"
+				placeholder={$_('home.options.choose')}
+				items={allFormats}
+				bind:value={$formatValue}
+			/>
+		</div>
+		<div class="grid gap-1.5">
+			<label for="filter-select" class="text-xs font-medium text-ink-secondary"
+				>{$_('home.options.filter')}</label
+			>
+			<Select id="filter-select" items={allFilters} bind:value={$filterValue} />
+		</div>
 	</div>
 	<div class="grid grid-cols-2 gap-3">
 		<div class="grid gap-1.5">
@@ -62,28 +62,20 @@ See the Mulan PSL v2 for more details. -->
 				>{$_('home.options.width.title')}</label
 			>
 			<Input id="width" type="number" bind:value={$widthValue} />
-			{#if showWidthHelper}
-				<p class="text-xs text-red-600">
-					<span class="font-medium">{$_('home.options.width.helper1')}</span>
-					{$_('home.options.width.helper2')}
-				</p>
-			{:else}
-				<p class="text-xs text-ink-muted">{$_('home.options.size_helper')}</p>
-			{/if}
 		</div>
 		<div class="grid gap-1.5">
 			<label for="height" class="text-xs font-medium text-ink-secondary"
 				>{$_('home.options.height.title')}</label
 			>
 			<Input id="height" type="number" bind:value={$heightValue} />
-			{#if showHeightHelper}
-				<p class="text-xs text-red-600">
-					<span class="font-medium">{$_('home.options.height.helper1')}</span>
-					{$_('home.options.height.helper2')}
-				</p>
-			{:else}
-				<p class="text-xs text-ink-muted">{$_('home.options.size_helper')}</p>
-			{/if}
 		</div>
+		{#if showWidthHelper || showHeightHelper}
+			<p class="col-span-2 text-xs font-medium text-red-600">
+				{$_('home.options.width.helper1')}
+				{$_('home.options.width.helper2')}
+			</p>
+		{:else}
+			<p class="col-span-2 text-xs text-ink-muted">{$_('home.options.size_helper')}</p>
+		{/if}
 	</div>
 </div>

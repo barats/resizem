@@ -28,7 +28,7 @@ See the Mulan PSL v2 for more details. -->
 	<button
 		type="button"
 		disabled={$doing}
-		class="flex h-full w-full flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-line bg-surface px-6 text-center transition-colors hover:border-primary-400 hover:bg-primary-50/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:pointer-events-none disabled:opacity-60"
+		class="flex h-full w-full flex-col items-center justify-center gap-1.5 rounded-xl border border-line bg-surface px-6 text-center transition-colors hover:border-primary-400 hover:bg-primary-50/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:pointer-events-none disabled:opacity-60"
 		onclick={openDialog}
 	>
 		<CloudUpload class="mb-1 h-10 w-10 text-ink-muted" strokeWidth={1.5} />

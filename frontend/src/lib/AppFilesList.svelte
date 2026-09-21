@@ -86,7 +86,7 @@ See the Mulan PSL v2 for more details. -->
 						</div>
 					{/if}
 				</div>
-				<ul class="divide-y divide-line rounded-xl border border-line bg-surface">
+				<ul class="divide-y divide-line">
 					{#each $filesList as file (file)}
 						<li
 							class="group flex cursor-pointer items-center gap-3 px-3 py-2 text-sm font-normal text-ink transition-colors hover:bg-surface-muted"
@@ -131,7 +131,7 @@ See the Mulan PSL v2 for more details. -->
 						</Button>
 					{/if}
 				</div>
-				<ul class="divide-y divide-line rounded-xl border border-line bg-surface">
+				<ul class="divide-y divide-line">
 					{#each $resultList as item, i (i)}
 						<li
 							class="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm font-normal text-ink transition-colors hover:bg-surface-muted"
